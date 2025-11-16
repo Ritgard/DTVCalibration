@@ -83,6 +83,7 @@ namespace WindowsFormsApp1
             btnStopRotronik.Click += (s, ev) => stopSenderSensor();
             btnLoadFile.Click += (s, ev) => LoadFile();
             btnScreenShot.Click += (s, ev) => MakeScreenShot();
+            btnExportCalibration.Click += (s, ev) => ExportCalibration();
 
             // Заполнение COM-портов
             string[] ports = SerialPort.GetPortNames();
@@ -125,6 +126,7 @@ namespace WindowsFormsApp1
             }
 
             int totalWidth = 0;
+
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
                 totalWidth += col.Width;
@@ -543,7 +545,7 @@ namespace WindowsFormsApp1
                 }
             }
         } // доработать if else
-        private void btnExportCalibration_Click(object sender, EventArgs e)
+        private void ExportCalibration()
         {
             string templateName = rBChecked.Checked ? "Проверка температуры.xlsx" : "Калибровка температуры.xlsx";
             string filePath = templateName;
@@ -587,7 +589,7 @@ namespace WindowsFormsApp1
                 }
                 workbook.SaveAs(fullPath);
             }
-            MessageBox.Show("Файл успешно сохранён!");
+            MessageBox.Show($"Файл успешно сохранён в {fullPath}");
         } // сделана
         private void btnCalculateCoeff_Click(object sender, EventArgs e)
         {
@@ -734,6 +736,8 @@ namespace WindowsFormsApp1
             string fullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
 
             screenshot.Save(fullPath, System.Drawing.Imaging.ImageFormat.Png);
+            textBoxHmp.AppendText($"Скриншот сделан и сохранен в {fullPath}");
         } // сделана
+
     }
 }
