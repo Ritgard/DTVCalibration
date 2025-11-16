@@ -1,7 +1,9 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office2016.Drawing.Command;
 using DocumentFormat.OpenXml.Spreadsheet;
 using MathNet.Numerics;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -48,6 +50,7 @@ namespace WindowsFormsApp1
 
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private bool isPolling = false;
+        private int countReadSensorMessage = 0; // счетчик принятых сообщений
 
         public Form1()
         {
@@ -75,8 +78,10 @@ namespace WindowsFormsApp1
             btnDisConnectDtv.Click += (s, ev) => DisconnectComPort("DTV");
 
             btnSetCountModuls.Click += (s, ev) => setCountModuls();
-            btnStartSendSensor.Click += (s, ev) => ChoiceStartSendSensor();
+            btnStartSendSensor.Click += (s, ev) => ChoiceStartSendSensor("HMP155");
+            btnStartRotronik.Click += (s, ev) => ChoiceStartSendSensor("ROTRONIK");
             btnStopSenderSensor.Click += (s, ev) => stopSenderSensor();
+            btnStopRotronik.Click += (s, ev) => stopSenderSensor();
             btnLoadFile.Click += (s, ev) => LoadFile();
             btnScreenShot.Click += (s, ev) => MakeScreenShot();
 
@@ -213,7 +218,7 @@ namespace WindowsFormsApp1
                     serialPortSensor.Open();
                 }
 
-                textBoxHmp.AppendText($"Успешно подключён к {nameSensor} на {selectedPort}" + Environment.NewLine);
+                textBoxHmp.AppendText($"--- Успешно подключён к {nameSensor} на {selectedPort} ---" + Environment.NewLine);
             }
             catch (Exception ex)
             {
@@ -228,17 +233,16 @@ namespace WindowsFormsApp1
                     if (serialPortDtv.IsOpen)
                     {
                         serialPortDtv.Close();
-                        textBoxHmp.AppendText($"Успешно отключился от {name}" + Environment.NewLine);
+                        textBoxHmp.AppendText($"--- Успешно отключился от {name} ---" + Environment.NewLine);
                     }
                     break;
                 case "HMP155":
                 case "ROTRONIK":
-                case "Rotronik":
                     if (serialPortSensor.IsOpen)
                     {
                         serialPortSensor.DataReceived -= serialPortSensor_DataReceived;
                         serialPortSensor.Close();
-                        textBoxHmp.AppendText($"Успешно отключился от {name}" + Environment.NewLine);
+                        textBoxHmp.AppendText($"--- Успешно отключился от {name} ---" + Environment.NewLine);
                     }
                     break;
             }
@@ -256,24 +260,40 @@ namespace WindowsFormsApp1
                 serialPortDtv.Close();
             }
         }
-        private void ChoiceStartSendSensor()
+        private void ChoiceStartSendSensor(string nameSensor)
         {
+            textBoxHmp.AppendText($"--- Начат опрос устройства {nameSensor} ---" + Environment.NewLine);
+
+            countReadSensorMessage = 0;
+            
+            switch (nameSensor)
+            {
+                case "HMP155":
+                    if (rBBezOprosa.Checked)
+                    {
+                        StartSendSensor();
+                    }
+                    else if (rBPoZaprosu.Checked)
+                    {
+                        if (timer.Enabled)
+                        {
+                            stopSenderSensor();
+                        }
+                        timer.Interval = Math.Max(50, (int)intervalSend.Value);
+                        timer.Start();
+                        isPolling = true;
+                    }
+                    break;
+                case "ROTRONIK":
+                    timer.Interval = Math.Max(50, (int)intervalSendRotronic.Value);
+                    timer.Start();
+                    isPolling = true;
+                    break;
+            }
             if (!serialPortSensor.IsOpen)
             {
                 MessageBox.Show("Сначала подключитесь к эталону (HMP/ROTRONIK)!");
                 return;
-            }
-
-            if (rBBezOprosa.Checked)
-            {
-                StartSendSensor();
-            }
-            else if (rBPoZaprosu.Checked)
-            {
-                stopSenderSensor();
-                timer.Interval = Math.Max(50, (int)intervalSend.Value);
-                timer.Start();
-                isPolling = true;
             }
         } // сделана
         private void StartSendSensor()
@@ -282,24 +302,40 @@ namespace WindowsFormsApp1
             serialPortSensor.DiscardOutBuffer();
             serialPortSensor.DataReceived -= serialPortSensor_DataReceived;
             serialPortSensor.DataReceived += serialPortSensor_DataReceived;
-
-            btnStartSendSensor.Text = "Приём активен";
         } // сделана
         private void StartTimerSendSensor(object sender, EventArgs e)
         {
+            string command = null;
+            string response = null;
 
             if (!serialPortSensor.IsOpen || IsDisposed)
                 return;
 
             try
             {
-                string command = rBSend1.Checked ? "SEND 1\r\n" : "SEND 0\r\n";
-                serialPortSensor.WriteLine(command);
-
-                if (serialPortSensor.BytesToRead > 0)
+                if (panelHMP155.Visible)
                 {
-                    string response = serialPortSensor.ReadExisting();
-                    ProcessSensorResponse(response);
+                    command = rBSend1.Checked ? "SEND 1\r\n" : "SEND 0\r\n";
+                    serialPortSensor.WriteLine(command);
+
+                    if (serialPortSensor.BytesToRead > 0)
+                    {
+                        response = serialPortSensor.ReadExisting();
+                        
+                        ProcessSensorResponse(response, "HMP155");
+                    }
+                }
+                else if (panelRotronik.Visible)
+                {
+                    command = "{J00RDD}\r";
+                    serialPortSensor.Write(command);
+
+                    if (serialPortSensor.BytesToRead > 0)
+                    {
+                        response = serialPortSensor.ReadExisting();
+
+                        ProcessSensorResponse(response, "ROTRONIK");
+                    }
                 }
             }
             catch (Exception ex)
@@ -308,16 +344,33 @@ namespace WindowsFormsApp1
                 stopSenderSensor();
             }
         } // сделана
-        private void ProcessSensorResponse(string rawData)
+        private void ProcessSensorResponse(string rawData, string nameSensor)
         {
+            char delimetr = ',';
+            int arrayIndexData = 0;
+            switch (nameSensor)
+            {
+                case "HMP155":
+                    delimetr = ',';
+                    arrayIndexData = 2;
+                    break;
+                case "ROTRONIK":
+                    delimetr = ';';
+                    arrayIndexData = 5;
+                    break;
+            }
+
             string[] lines = rawData.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
             foreach (string line in lines)
             {
                 textBoxHmp.AppendText(line + Environment.NewLine);
-                var parts = line.Split(',');
+                var parts = line.Split(delimetr);
                 if (parts.Length >= 3)
                 {
-                    textBoxTemp.Text = parts[2].ToString().Trim();
+                    textBoxTemp.Text = parts[arrayIndexData].ToString().Trim();
+                    countReadSensorMessage++;
+                    lblCountReadMessage.Text = (Convert.ToString(countReadSensorMessage));
                 }
             }
         } // сделана
@@ -326,12 +379,27 @@ namespace WindowsFormsApp1
             try
             {
                 string data = serialPortSensor.ReadExisting();
+
+                if (data != null)
+                {
+                    countReadSensorMessage++;
+                }
+                
+
                 if (string.IsNullOrWhiteSpace(data))
                     return;
 
                 Invoke(new Action(() =>
                 {
-                    ProcessSensorResponse(data);
+                    if (panelHMP155.Visible)
+                    {
+                        ProcessSensorResponse(data, "HMP155");
+                    }
+                    else if (panelRotronik.Visible)
+                    {
+                        ProcessSensorResponse(data, "ROTRONIK");
+                    }
+                    lblCountReadMessage.Text = (Convert.ToString(countReadSensorMessage));
                 }));
             }
             catch (Exception ex)
@@ -359,11 +427,11 @@ namespace WindowsFormsApp1
         } // сделана
         private void stopSenderSensor()
         {
+            textBoxHmp.AppendText("--- Опрос устройства закончен ---" + Environment.NewLine);
             timer.Stop();
             isPolling = false;
             serialPortSensor.DataReceived -= serialPortSensor_DataReceived;
-
-            btnStartSendSensor.Text = "Начать опрос";
+            countReadSensorMessage = 0;
         } // сделана
         private async void btnSendDtv_Click(object sender, EventArgs e)
         {
@@ -437,7 +505,7 @@ namespace WindowsFormsApp1
             else if (parsedTemp > -12 && parsedTemp < -8) cells = 5;
             else if (parsedTemp > -2 && parsedTemp < 2) cells = 6;
             else if (parsedTemp > 8 && parsedTemp < 12) cells = 7;
-            else if (parsedTemp > 18 && parsedTemp < 22) cells = 8;
+            else if (parsedTemp > 18 && parsedTemp < 23) cells = 8;
             else if (parsedTemp > 28 && parsedTemp < 32) cells = 9;
             else if (parsedTemp > 38 && parsedTemp < 42) cells = 10;
             else if (parsedTemp > 48 && parsedTemp < 52) cells = 11;
@@ -581,7 +649,7 @@ namespace WindowsFormsApp1
             labelNameSensor.Text = choice;
             panelChoiseSensor.Visible = false;
             panelHMP155.Visible = choice == "HMP155";
-            panelRotronik.Visible = choice == "РОТРОНИК";
+            panelRotronik.Visible = choice == "Rotronik HP32";
         } // добавить потом мит
         private void LoadFile()
         {
