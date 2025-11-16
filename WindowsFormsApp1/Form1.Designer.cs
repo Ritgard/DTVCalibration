@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelChoiseSensor = new System.Windows.Forms.Panel();
             this.btnChoiceSensor = new System.Windows.Forms.Button();
@@ -134,15 +134,15 @@
             this.panel1.Controls.Add(this.panelChoiseSensor);
             this.panel1.Controls.Add(this.panelHMP155);
             this.panel1.Controls.Add(this.panelRotronik);
+            this.panel1.Controls.Add(this.panelSensor);
             this.panel1.Controls.Add(this.panelNameSensor);
             this.panel1.Controls.Add(this.panelNameModul);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panelSensor);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1304, 738);
+            this.panel1.Size = new System.Drawing.Size(1323, 738);
             this.panel1.TabIndex = 0;
             // 
             // panelChoiseSensor
@@ -151,16 +151,16 @@
             this.panelChoiseSensor.Controls.Add(this.btnChoiceSensor);
             this.panelChoiseSensor.Controls.Add(this.label1);
             this.panelChoiseSensor.Controls.Add(this.comboBoxChoiceSensor);
-            this.panelChoiseSensor.Location = new System.Drawing.Point(953, 69);
+            this.panelChoiseSensor.Location = new System.Drawing.Point(955, 69);
             this.panelChoiseSensor.Name = "panelChoiseSensor";
-            this.panelChoiseSensor.Size = new System.Drawing.Size(344, 267);
+            this.panelChoiseSensor.Size = new System.Drawing.Size(362, 267);
             this.panelChoiseSensor.TabIndex = 16;
             // 
             // btnChoiceSensor
             // 
             this.btnChoiceSensor.Location = new System.Drawing.Point(4, 98);
             this.btnChoiceSensor.Name = "btnChoiceSensor";
-            this.btnChoiceSensor.Size = new System.Drawing.Size(331, 42);
+            this.btnChoiceSensor.Size = new System.Drawing.Size(351, 42);
             this.btnChoiceSensor.TabIndex = 2;
             this.btnChoiceSensor.Text = "Выбрать";
             this.btnChoiceSensor.UseVisualStyleBackColor = true;
@@ -184,7 +184,7 @@
             this.comboBoxChoiceSensor.Items.AddRange(new object[] {
             "HMP155",
             "Rotronik HP32"});
-            this.comboBoxChoiceSensor.Location = new System.Drawing.Point(172, 28);
+            this.comboBoxChoiceSensor.Location = new System.Drawing.Point(195, 35);
             this.comboBoxChoiceSensor.Name = "comboBoxChoiceSensor";
             this.comboBoxChoiceSensor.Size = new System.Drawing.Size(160, 26);
             this.comboBoxChoiceSensor.TabIndex = 0;
@@ -198,9 +198,9 @@
             this.panelHMP155.Controls.Add(this.btnStartSendSensor);
             this.panelHMP155.Controls.Add(this.groupBoxJobHmp);
             this.panelHMP155.Controls.Add(this.groupBoxTimeSendHmp);
-            this.panelHMP155.Location = new System.Drawing.Point(953, 69);
+            this.panelHMP155.Location = new System.Drawing.Point(955, 69);
             this.panelHMP155.Name = "panelHMP155";
-            this.panelHMP155.Size = new System.Drawing.Size(344, 267);
+            this.panelHMP155.Size = new System.Drawing.Size(362, 267);
             this.panelHMP155.TabIndex = 4;
             // 
             // groupBox2
@@ -210,7 +210,7 @@
             this.groupBox2.Controls.Add(this.btnDisConnectHmp);
             this.groupBox2.Location = new System.Drawing.Point(3, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(157, 142);
+            this.groupBox2.Size = new System.Drawing.Size(166, 142);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ком порт";
@@ -222,15 +222,14 @@
             this.comboBoxHmp.FormattingEnabled = true;
             this.comboBoxHmp.Location = new System.Drawing.Point(7, 24);
             this.comboBoxHmp.Name = "comboBoxHmp";
-            this.comboBoxHmp.Size = new System.Drawing.Size(142, 26);
+            this.comboBoxHmp.Size = new System.Drawing.Size(153, 26);
             this.comboBoxHmp.TabIndex = 2;
             // 
             // btnConnectHmp
             // 
-            this.btnConnectHmp.AutoSize = true;
             this.btnConnectHmp.Location = new System.Drawing.Point(6, 59);
             this.btnConnectHmp.Name = "btnConnectHmp";
-            this.btnConnectHmp.Size = new System.Drawing.Size(143, 32);
+            this.btnConnectHmp.Size = new System.Drawing.Size(154, 32);
             this.btnConnectHmp.TabIndex = 3;
             this.btnConnectHmp.Text = "Подключиться";
             this.btnConnectHmp.UseVisualStyleBackColor = true;
@@ -240,14 +239,14 @@
             this.btnDisConnectHmp.AutoSize = true;
             this.btnDisConnectHmp.Location = new System.Drawing.Point(6, 97);
             this.btnDisConnectHmp.Name = "btnDisConnectHmp";
-            this.btnDisConnectHmp.Size = new System.Drawing.Size(143, 32);
+            this.btnDisConnectHmp.Size = new System.Drawing.Size(154, 32);
             this.btnDisConnectHmp.TabIndex = 15;
             this.btnDisConnectHmp.Text = "Отключиться";
             this.btnDisConnectHmp.UseVisualStyleBackColor = true;
             // 
             // btnStopSenderSensor
             // 
-            this.btnStopSenderSensor.Location = new System.Drawing.Point(195, 227);
+            this.btnStopSenderSensor.Location = new System.Drawing.Point(213, 227);
             this.btnStopSenderSensor.Name = "btnStopSenderSensor";
             this.btnStopSenderSensor.Size = new System.Drawing.Size(144, 35);
             this.btnStopSenderSensor.TabIndex = 22;
@@ -258,7 +257,7 @@
             // 
             this.groupBoxSendHmp.Controls.Add(this.rBSend1);
             this.groupBoxSendHmp.Controls.Add(this.rBSend0);
-            this.groupBoxSendHmp.Location = new System.Drawing.Point(177, 100);
+            this.groupBoxSendHmp.Location = new System.Drawing.Point(196, 102);
             this.groupBoxSendHmp.Name = "groupBoxSendHmp";
             this.groupBoxSendHmp.Size = new System.Drawing.Size(162, 83);
             this.groupBoxSendHmp.TabIndex = 25;
@@ -300,7 +299,7 @@
             // 
             this.groupBoxJobHmp.Controls.Add(this.rBBezOprosa);
             this.groupBoxJobHmp.Controls.Add(this.rBPoZaprosu);
-            this.groupBoxJobHmp.Location = new System.Drawing.Point(178, 5);
+            this.groupBoxJobHmp.Location = new System.Drawing.Point(196, 5);
             this.groupBoxJobHmp.Name = "groupBoxJobHmp";
             this.groupBoxJobHmp.Size = new System.Drawing.Size(161, 91);
             this.groupBoxJobHmp.TabIndex = 24;
@@ -334,7 +333,7 @@
             this.groupBoxTimeSendHmp.Controls.Add(this.intervalSend);
             this.groupBoxTimeSendHmp.Location = new System.Drawing.Point(3, 149);
             this.groupBoxTimeSendHmp.Name = "groupBoxTimeSendHmp";
-            this.groupBoxTimeSendHmp.Size = new System.Drawing.Size(157, 58);
+            this.groupBoxTimeSendHmp.Size = new System.Drawing.Size(166, 58);
             this.groupBoxTimeSendHmp.TabIndex = 26;
             this.groupBoxTimeSendHmp.TabStop = false;
             this.groupBoxTimeSendHmp.Text = "Время опроса";
@@ -354,7 +353,7 @@
             0,
             0});
             this.intervalSend.Name = "intervalSend";
-            this.intervalSend.Size = new System.Drawing.Size(134, 22);
+            this.intervalSend.Size = new System.Drawing.Size(143, 22);
             this.intervalSend.TabIndex = 5;
             this.intervalSend.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.intervalSend.Value = new decimal(new int[] {
@@ -370,9 +369,9 @@
             this.panelRotronik.Controls.Add(this.btnStartRotronik);
             this.panelRotronik.Controls.Add(this.groupBox3);
             this.panelRotronik.Controls.Add(this.groupBox1);
-            this.panelRotronik.Location = new System.Drawing.Point(953, 69);
+            this.panelRotronik.Location = new System.Drawing.Point(955, 69);
             this.panelRotronik.Name = "panelRotronik";
-            this.panelRotronik.Size = new System.Drawing.Size(344, 267);
+            this.panelRotronik.Size = new System.Drawing.Size(362, 267);
             this.panelRotronik.TabIndex = 17;
             // 
             // btnStopRotronik
@@ -396,7 +395,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.intervalSendRotronic);
-            this.groupBox3.Location = new System.Drawing.Point(166, 5);
+            this.groupBox3.Location = new System.Drawing.Point(191, 5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(166, 58);
             this.groupBox3.TabIndex = 27;
@@ -434,7 +433,7 @@
             this.groupBox1.Controls.Add(this.btnDisConnectRotronik);
             this.groupBox1.Location = new System.Drawing.Point(4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(156, 142);
+            this.groupBox1.Size = new System.Drawing.Size(166, 142);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ком порт";
@@ -446,7 +445,7 @@
             this.comboBoxRotronic.FormattingEnabled = true;
             this.comboBoxRotronic.Location = new System.Drawing.Point(6, 25);
             this.comboBoxRotronic.Name = "comboBoxRotronic";
-            this.comboBoxRotronic.Size = new System.Drawing.Size(142, 26);
+            this.comboBoxRotronic.Size = new System.Drawing.Size(154, 26);
             this.comboBoxRotronic.TabIndex = 2;
             // 
             // btnConnectRotronic
@@ -454,7 +453,7 @@
             this.btnConnectRotronic.AutoSize = true;
             this.btnConnectRotronic.Location = new System.Drawing.Point(6, 59);
             this.btnConnectRotronic.Name = "btnConnectRotronic";
-            this.btnConnectRotronic.Size = new System.Drawing.Size(143, 32);
+            this.btnConnectRotronic.Size = new System.Drawing.Size(154, 32);
             this.btnConnectRotronic.TabIndex = 3;
             this.btnConnectRotronic.Text = "Подключиться";
             this.btnConnectRotronic.UseVisualStyleBackColor = true;
@@ -464,7 +463,7 @@
             this.btnDisConnectRotronik.AutoSize = true;
             this.btnDisConnectRotronik.Location = new System.Drawing.Point(6, 97);
             this.btnDisConnectRotronik.Name = "btnDisConnectRotronik";
-            this.btnDisConnectRotronik.Size = new System.Drawing.Size(143, 32);
+            this.btnDisConnectRotronik.Size = new System.Drawing.Size(154, 32);
             this.btnDisConnectRotronik.TabIndex = 15;
             this.btnDisConnectRotronik.Text = "Отключиться";
             this.btnDisConnectRotronik.UseVisualStyleBackColor = true;
@@ -473,9 +472,9 @@
             // 
             this.panelNameSensor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelNameSensor.Controls.Add(this.labelNameSensor);
-            this.panelNameSensor.Location = new System.Drawing.Point(953, 12);
+            this.panelNameSensor.Location = new System.Drawing.Point(955, 12);
             this.panelNameSensor.Name = "panelNameSensor";
-            this.panelNameSensor.Size = new System.Drawing.Size(344, 51);
+            this.panelNameSensor.Size = new System.Drawing.Size(362, 51);
             this.panelNameSensor.TabIndex = 3;
             // 
             // labelNameSensor
@@ -486,7 +485,7 @@
             this.labelNameSensor.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelNameSensor.Location = new System.Drawing.Point(49, 13);
             this.labelNameSensor.Name = "labelNameSensor";
-            this.labelNameSensor.Size = new System.Drawing.Size(244, 23);
+            this.labelNameSensor.Size = new System.Drawing.Size(262, 23);
             this.labelNameSensor.TabIndex = 0;
             this.labelNameSensor.Text = "Эталон температуры";
             this.labelNameSensor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -497,7 +496,7 @@
             this.panelNameModul.Controls.Add(this.labelNameModul);
             this.panelNameModul.Location = new System.Drawing.Point(12, 12);
             this.panelNameModul.Name = "panelNameModul";
-            this.panelNameModul.Size = new System.Drawing.Size(935, 51);
+            this.panelNameModul.Size = new System.Drawing.Size(937, 51);
             this.panelNameModul.TabIndex = 2;
             // 
             // labelNameModul
@@ -528,32 +527,32 @@
             this.panel3.Controls.Add(this.dataGridView1);
             this.panel3.Location = new System.Drawing.Point(12, 69);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(935, 663);
+            this.panel3.Size = new System.Drawing.Size(937, 663);
             this.panel3.TabIndex = 1;
             // 
             // btnLoadFile
             // 
-            this.btnLoadFile.Location = new System.Drawing.Point(821, 532);
+            this.btnLoadFile.Location = new System.Drawing.Point(802, 532);
             this.btnLoadFile.Name = "btnLoadFile";
-            this.btnLoadFile.Size = new System.Drawing.Size(109, 42);
+            this.btnLoadFile.Size = new System.Drawing.Size(127, 42);
             this.btnLoadFile.TabIndex = 35;
             this.btnLoadFile.Text = "Загрузить";
             this.btnLoadFile.UseVisualStyleBackColor = true;
             // 
             // btnExportCalibration
             // 
-            this.btnExportCalibration.Location = new System.Drawing.Point(821, 484);
+            this.btnExportCalibration.Location = new System.Drawing.Point(802, 484);
             this.btnExportCalibration.Name = "btnExportCalibration";
-            this.btnExportCalibration.Size = new System.Drawing.Size(109, 42);
+            this.btnExportCalibration.Size = new System.Drawing.Size(127, 42);
             this.btnExportCalibration.TabIndex = 34;
             this.btnExportCalibration.Text = "Сохранить";
             this.btnExportCalibration.UseVisualStyleBackColor = true;
             // 
             // btnScreenShot
             // 
-            this.btnScreenShot.Location = new System.Drawing.Point(821, 613);
+            this.btnScreenShot.Location = new System.Drawing.Point(802, 613);
             this.btnScreenShot.Name = "btnScreenShot";
-            this.btnScreenShot.Size = new System.Drawing.Size(109, 42);
+            this.btnScreenShot.Size = new System.Drawing.Size(127, 42);
             this.btnScreenShot.TabIndex = 33;
             this.btnScreenShot.Text = "Скриншот";
             this.btnScreenShot.UseVisualStyleBackColor = true;
@@ -562,9 +561,9 @@
             // 
             this.btnSendDtv.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnSendDtv.ForeColor = System.Drawing.Color.DeepPink;
-            this.btnSendDtv.Location = new System.Drawing.Point(743, 98);
+            this.btnSendDtv.Location = new System.Drawing.Point(745, 99);
             this.btnSendDtv.Name = "btnSendDtv";
-            this.btnSendDtv.Size = new System.Drawing.Size(187, 42);
+            this.btnSendDtv.Size = new System.Drawing.Size(184, 42);
             this.btnSendDtv.TabIndex = 23;
             this.btnSendDtv.Text = "Опросить";
             this.btnSendDtv.UseVisualStyleBackColor = true;
@@ -573,18 +572,18 @@
             // textBoxParsedDtv
             // 
             this.textBoxParsedDtv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxParsedDtv.Location = new System.Drawing.Point(752, 484);
+            this.textBoxParsedDtv.Location = new System.Drawing.Point(745, 484);
             this.textBoxParsedDtv.Multiline = true;
             this.textBoxParsedDtv.Name = "textBoxParsedDtv";
-            this.textBoxParsedDtv.Size = new System.Drawing.Size(63, 171);
+            this.textBoxParsedDtv.Size = new System.Drawing.Size(51, 171);
             this.textBoxParsedDtv.TabIndex = 3;
             this.textBoxParsedDtv.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCalculateCoeff
             // 
-            this.btnCalculateCoeff.Location = new System.Drawing.Point(743, 3);
+            this.btnCalculateCoeff.Location = new System.Drawing.Point(745, 3);
             this.btnCalculateCoeff.Name = "btnCalculateCoeff";
-            this.btnCalculateCoeff.Size = new System.Drawing.Size(187, 53);
+            this.btnCalculateCoeff.Size = new System.Drawing.Size(184, 53);
             this.btnCalculateCoeff.TabIndex = 31;
             this.btnCalculateCoeff.Text = "Рассчитать коэффициенты";
             this.btnCalculateCoeff.UseVisualStyleBackColor = true;
@@ -597,14 +596,14 @@
             this.textBoxDtv.Location = new System.Drawing.Point(3, 484);
             this.textBoxDtv.Multiline = true;
             this.textBoxDtv.Name = "textBoxDtv";
-            this.textBoxDtv.Size = new System.Drawing.Size(743, 171);
+            this.textBoxDtv.Size = new System.Drawing.Size(736, 171);
             this.textBoxDtv.TabIndex = 2;
             // 
             // groupBoxTemp
             // 
             this.groupBoxTemp.Controls.Add(this.textBoxTemp);
             this.groupBoxTemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBoxTemp.Location = new System.Drawing.Point(446, 3);
+            this.groupBoxTemp.Location = new System.Drawing.Point(485, 3);
             this.groupBoxTemp.Name = "groupBoxTemp";
             this.groupBoxTemp.Size = new System.Drawing.Size(136, 77);
             this.groupBoxTemp.TabIndex = 29;
@@ -623,7 +622,7 @@
             // 
             this.groupBoxJob.Controls.Add(this.rBChecked);
             this.groupBoxJob.Controls.Add(this.rBCalibration);
-            this.groupBoxJob.Location = new System.Drawing.Point(301, 3);
+            this.groupBoxJob.Location = new System.Drawing.Point(340, 3);
             this.groupBoxJob.Name = "groupBoxJob";
             this.groupBoxJob.Size = new System.Drawing.Size(139, 107);
             this.groupBoxJob.TabIndex = 28;
@@ -657,9 +656,9 @@
             // 
             this.groupBoxCountModuls.Controls.Add(this.countModulsDtv);
             this.groupBoxCountModuls.Controls.Add(this.btnSetCountModuls);
-            this.groupBoxCountModuls.Location = new System.Drawing.Point(165, 3);
+            this.groupBoxCountModuls.Location = new System.Drawing.Point(187, 3);
             this.groupBoxCountModuls.Name = "groupBoxCountModuls";
-            this.groupBoxCountModuls.Size = new System.Drawing.Size(130, 106);
+            this.groupBoxCountModuls.Size = new System.Drawing.Size(147, 106);
             this.groupBoxCountModuls.TabIndex = 27;
             this.groupBoxCountModuls.TabStop = false;
             this.groupBoxCountModuls.Text = "Модули";
@@ -679,7 +678,7 @@
             0,
             0});
             this.countModulsDtv.Name = "countModulsDtv";
-            this.countModulsDtv.Size = new System.Drawing.Size(117, 22);
+            this.countModulsDtv.Size = new System.Drawing.Size(136, 22);
             this.countModulsDtv.TabIndex = 20;
             this.countModulsDtv.Value = new decimal(new int[] {
             9,
@@ -692,7 +691,7 @@
             this.btnSetCountModuls.AutoSize = true;
             this.btnSetCountModuls.Location = new System.Drawing.Point(5, 62);
             this.btnSetCountModuls.Name = "btnSetCountModuls";
-            this.btnSetCountModuls.Size = new System.Drawing.Size(120, 36);
+            this.btnSetCountModuls.Size = new System.Drawing.Size(136, 36);
             this.btnSetCountModuls.TabIndex = 22;
             this.btnSetCountModuls.Text = "Установить";
             this.btnSetCountModuls.UseVisualStyleBackColor = true;
@@ -704,7 +703,7 @@
             this.groupBoxComPort.Controls.Add(this.btnDisConnectDtv);
             this.groupBoxComPort.Location = new System.Drawing.Point(3, 3);
             this.groupBoxComPort.Name = "groupBoxComPort";
-            this.groupBoxComPort.Size = new System.Drawing.Size(156, 142);
+            this.groupBoxComPort.Size = new System.Drawing.Size(178, 150);
             this.groupBoxComPort.TabIndex = 26;
             this.groupBoxComPort.TabStop = false;
             this.groupBoxComPort.Text = "Ком порт";
@@ -718,7 +717,7 @@
             this.comboBoxDtv.FormattingEnabled = true;
             this.comboBoxDtv.Location = new System.Drawing.Point(8, 25);
             this.comboBoxDtv.Name = "comboBoxDtv";
-            this.comboBoxDtv.Size = new System.Drawing.Size(140, 26);
+            this.comboBoxDtv.Size = new System.Drawing.Size(164, 26);
             this.comboBoxDtv.TabIndex = 18;
             // 
             // btnConnectDtv
@@ -726,7 +725,7 @@
             this.btnConnectDtv.AutoSize = true;
             this.btnConnectDtv.Location = new System.Drawing.Point(8, 62);
             this.btnConnectDtv.Name = "btnConnectDtv";
-            this.btnConnectDtv.Size = new System.Drawing.Size(140, 32);
+            this.btnConnectDtv.Size = new System.Drawing.Size(164, 32);
             this.btnConnectDtv.TabIndex = 18;
             this.btnConnectDtv.Text = "Подключиться";
             this.btnConnectDtv.UseVisualStyleBackColor = true;
@@ -736,14 +735,14 @@
             this.btnDisConnectDtv.AutoSize = true;
             this.btnDisConnectDtv.Location = new System.Drawing.Point(8, 102);
             this.btnDisConnectDtv.Name = "btnDisConnectDtv";
-            this.btnDisConnectDtv.Size = new System.Drawing.Size(140, 32);
+            this.btnDisConnectDtv.Size = new System.Drawing.Size(164, 32);
             this.btnDisConnectDtv.TabIndex = 18;
             this.btnDisConnectDtv.Text = "Отключиться";
             this.btnDisConnectDtv.UseVisualStyleBackColor = true;
             // 
             // btnWriteDataInTable
             // 
-            this.btnWriteDataInTable.Location = new System.Drawing.Point(550, 98);
+            this.btnWriteDataInTable.Location = new System.Drawing.Point(552, 99);
             this.btnWriteDataInTable.Name = "btnWriteDataInTable";
             this.btnWriteDataInTable.Size = new System.Drawing.Size(187, 42);
             this.btnWriteDataInTable.TabIndex = 24;
@@ -758,14 +757,14 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle70.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle70.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle70.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle70.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle70.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle70.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle70.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle70;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tempCol,
@@ -781,24 +780,24 @@
             this.plus40Col,
             this.plus50Col,
             this.plus60Col});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle71.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle71.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle71.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle71.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle71.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle71.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle71.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle71;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.MenuText;
             this.dataGridView1.Location = new System.Drawing.Point(3, 151);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle72;
             this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(913, 377);
+            this.dataGridView1.Size = new System.Drawing.Size(956, 377);
             this.dataGridView1.TabIndex = 21;
             // 
             // tempCol
@@ -881,20 +880,19 @@
             // 
             // panelSensor
             // 
-            this.panelSensor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelSensor.Controls.Add(this.lblCountReadMessage);
             this.panelSensor.Controls.Add(this.label2);
             this.panelSensor.Controls.Add(this.textBoxHmp);
-            this.panelSensor.Location = new System.Drawing.Point(953, 69);
+            this.panelSensor.Location = new System.Drawing.Point(955, 69);
             this.panelSensor.Name = "panelSensor";
-            this.panelSensor.Size = new System.Drawing.Size(344, 663);
+            this.panelSensor.Size = new System.Drawing.Size(362, 663);
             this.panelSensor.TabIndex = 0;
             // 
             // lblCountReadMessage
             // 
             this.lblCountReadMessage.AutoSize = true;
             this.lblCountReadMessage.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblCountReadMessage.Location = new System.Drawing.Point(137, 641);
+            this.lblCountReadMessage.Location = new System.Drawing.Point(139, 649);
             this.lblCountReadMessage.Name = "lblCountReadMessage";
             this.lblCountReadMessage.Size = new System.Drawing.Size(14, 14);
             this.lblCountReadMessage.TabIndex = 11;
@@ -904,7 +902,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(0, 641);
+            this.label2.Location = new System.Drawing.Point(0, 649);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(140, 14);
             this.label2.TabIndex = 10;
@@ -919,14 +917,14 @@
             this.textBoxHmp.Multiline = true;
             this.textBoxHmp.Name = "textBoxHmp";
             this.textBoxHmp.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxHmp.Size = new System.Drawing.Size(336, 370);
+            this.textBoxHmp.Size = new System.Drawing.Size(354, 378);
             this.textBoxHmp.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1304, 738);
+            this.ClientSize = new System.Drawing.Size(1323, 738);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

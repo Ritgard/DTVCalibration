@@ -8,10 +8,12 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.IO.Ports;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Color = System.Drawing.Color;
 
 namespace WindowsFormsApp1
 {
@@ -96,7 +98,8 @@ namespace WindowsFormsApp1
             for (int i = 0; i < 9; i++)
                 dataGridView1.Rows.Add(i.ToString());
 
-            ColoringTable();
+            //ColoringTable();
+            ApplyModernStyle();
             ConfigureDataGridViewAppearance();
 
             panelHMP155.Visible = false;
@@ -110,9 +113,9 @@ namespace WindowsFormsApp1
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             dataGridView1.ScrollBars = ScrollBars.Vertical;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
@@ -738,6 +741,120 @@ namespace WindowsFormsApp1
             screenshot.Save(fullPath, System.Drawing.Imaging.ImageFormat.Png);
             textBoxHmp.AppendText($"Скриншот сделан и сохранен в {fullPath}");
         } // сделана
+        private void ApplyModernStyle()
+        {
+            // Основной фон формы
+            this.BackColor = Color.FromArgb(240, 245, 255); // Светло-голубой фон
+            this.ForeColor = Color.FromArgb(40, 40, 40);
 
+            // Панель "Модули ДТВ" — верхняя левая
+            panelHMP155.BackColor = Color.White;
+            panelHMP155.BorderStyle = BorderStyle.None;
+            panelHMP155.Padding = new Padding(12);
+
+            // Панель "Эталон" — правая
+            panelRotronik.BackColor = Color.White;
+            panelRotronik.BorderStyle = BorderStyle.None;
+            panelRotronik.Padding = new Padding(12);
+
+            // Панель выбора сенсора — центральная
+            panelChoiseSensor.BackColor = Color.White;
+            panelChoiseSensor.BorderStyle = BorderStyle.None;
+            panelChoiseSensor.Padding = new Padding(12);
+
+            // Цвет кнопок — Material Blue
+            Color buttonPrimary = Color.FromArgb(33, 150, 243);
+            Color buttonHover = Color.FromArgb(25, 118, 210);
+            Color buttonPressed = Color.FromArgb(20, 100, 180);
+            Color buttonText = Color.White;
+
+            // Кнопки: Подключиться, Отключиться, Установить, Рассчитать и т.д.
+            foreach (Button btn in new[] {
+                    btnConnectHmp, btnDisConnectHmp,
+                    btnConnectRotronic, btnDisConnectRotronik,
+                    btnConnectDtv, btnDisConnectDtv,
+                    btnStartSendSensor, btnStopSenderSensor,
+                    btnStartRotronik, btnStopRotronik,
+                    btnSendDtv, btnWriteDataInTable,
+                    btnLoadFile, btnExportCalibration,
+                    btnCalculateCoeff, btnScreenShot,
+                    btnSetCountModuls, btnChoiceSensor,
+                }.Where(b => b != null))
+            {
+                btn.BackColor = buttonPrimary;
+                btn.ForeColor = buttonText;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.FlatAppearance.MouseOverBackColor = buttonHover;
+                btn.FlatAppearance.MouseDownBackColor = buttonPressed;
+                //btn.Font = new System.Drawing.Font("Segoe UI", 9F, FontStyle.Bold);
+                btn.Padding = new Padding(8, 4, 8, 4);
+                btn.Cursor = Cursors.Hand;
+            }
+
+            // Текстбоксы и NumericUpDown
+            foreach (TextBox tb in new[] { textBoxTemp, textBoxDtv, textBoxParsedDtv, textBoxHmp }
+                .Where(t => t != null))
+            {
+                tb.BackColor = Color.White;
+                tb.ForeColor = Color.FromArgb(30, 30, 30);
+                tb.BorderStyle = BorderStyle.FixedSingle;
+                tb.Font = new System.Drawing.Font("Consolas", 9.5F);
+            }
+
+            foreach (NumericUpDown nud in new[] { countModulsDtv, intervalSend, intervalSendRotronic }
+                .Where(n => n != null))
+            {
+                nud.BackColor = Color.White;
+                nud.ForeColor = Color.FromArgb(30, 30, 30);
+                nud.Font = new System.Drawing.Font("Segoe UI", 9F);
+                nud.BorderStyle = BorderStyle.FixedSingle;
+            }
+
+            // ComboBox
+            foreach (ComboBox cb in new[] { comboBoxHmp, comboBoxDtv, comboBoxRotronic, comboBoxChoiceSensor }
+                .Where(c => c != null))
+            {
+                cb.BackColor = Color.White;
+                cb.ForeColor = Color.FromArgb(30, 30, 30);
+                cb.FlatStyle = FlatStyle.Flat;
+                //cb.Font = new System.Drawing.Font("Segoe UI", 9F);
+            }
+
+            // RadioButton
+            foreach (RadioButton rb in new[] { rBCalibration, rBChecked, rBBezOprosa, rBPoZaprosu, rBSend1, rBSend0 }
+                .Where(r => r != null))
+            {
+                rb.ForeColor = Color.FromArgb(50, 50, 50);
+                //rb.Font = new System.Drawing.Font("Segoe UI");
+                rb.AutoSize = true;
+            }
+
+            // Label
+            foreach (Label lbl in this.Controls.OfType<Label>())
+            {
+                lbl.ForeColor = Color.FromArgb(50, 50, 50);
+                lbl.Font = new System.Drawing.Font("Segoe UI", 9.5F, FontStyle.Bold);
+            }
+
+            // DataGridView — таблица данных
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(33, 150, 243);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            //dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 250);
+            dataGridView1.GridColor = Color.FromArgb(220, 220, 240);
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 255);
+
+            // Заголовок формы
+            this.Text = "📊 Калибровка и проверка температуры ДТВ";
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            //    // Добавим немного отступов
+            //    this.Padding = new Padding(10);
+        }
     }
 }
