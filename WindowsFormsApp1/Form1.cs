@@ -518,6 +518,7 @@ namespace WindowsFormsApp1
                     for (int col = 1; col < dataGridView1.Columns.Count; col++)
                     {
                         var cellValue = dataGridView1.Rows[row].Cells[col].Value;
+                        
                         if (cellValue != null && double.TryParse(cellValue.ToString(), out double num))
                         {
                             worksheet.Cell(startRow + row, col + 1).Value = num;
@@ -596,31 +597,53 @@ namespace WindowsFormsApp1
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 int variant = rBChecked.Checked ? 18 : 4;
-
                 string path = openFile.FileName;
+
+                // Настройка формата в зависимости от варианта
+                for (int colIndex = 1; colIndex < dataGridView1.Columns.Count; colIndex++)
+                {
+                    if (variant == 18)
+                    {
+                        dataGridView1.Columns[colIndex].DefaultCellStyle.Format = "F2";
+                    }
+                    else // variant == 4
+                    {
+                        dataGridView1.Columns[colIndex].DefaultCellStyle.Format = null; // или ""
+                    }
+                }
 
                 DataTableDelete();
                 ConfigureDataGridViewAppearance();
 
                 using (var workbook = new XLWorkbook(path))
                 {
-                    for (int colIndex = 1; colIndex < dataGridView1.Columns.Count; colIndex++)
-                    {
-                        dataGridView1.Columns[colIndex].DefaultCellStyle.Format = "F2";
-                    }
                     var worksheet = workbook.Worksheet(1);
-                    for (int rowTable = 0, rowExel = variant; rowTable < dataGridView1.RowCount; rowTable++, rowExel++)
+
+                    for (int rowTable = 0, rowExel = variant;
+                         rowTable < dataGridView1.Rows.Count && rowExel <= worksheet.LastRowUsed()?.RowNumber();
+                         rowTable++, rowExel++)
                     {
-                        for (int colTable = 1, colExel = 2; colTable < dataGridView1.ColumnCount; colTable++, colExel++)
+                        for (int colTable = 1, colExel = 2;
+                             colTable < dataGridView1.ColumnCount;
+                             colTable++, colExel++)
                         {
                             var cell = worksheet.Cell(rowExel, colExel);
-                            if (cell == null) continue;
-                            dataGridView1.Rows[rowTable].Cells[colTable].Value = cell.Value.ToString();
+                            if (cell == null || cell.IsEmpty()) continue;
+
+                            // Всегда сохраняем原始 значение (число или строку)
+                            if (double.TryParse(cell.Value.ToString(), out double num))
+                            {
+                                dataGridView1.Rows[rowTable].Cells[colTable].Value = num;
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[rowTable].Cells[colTable].Value = cell.Value.ToString();
+                            }
                         }
                     }
                 }
             }
-        } // сделана
+        }// сделана
         private void DataTableDelete()
         {
             for (int rowTable = 0; rowTable < dataGridView1.RowCount; rowTable++)
