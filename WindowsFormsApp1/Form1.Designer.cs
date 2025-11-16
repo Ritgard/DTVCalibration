@@ -51,6 +51,15 @@
             this.rBPoZaprosu = new System.Windows.Forms.RadioButton();
             this.groupBoxTimeSendHmp = new System.Windows.Forms.GroupBox();
             this.intervalSend = new System.Windows.Forms.NumericUpDown();
+            this.panelRotronik = new System.Windows.Forms.Panel();
+            this.btnStopRotronik = new System.Windows.Forms.Button();
+            this.btnStartRotronik = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.intervalSendRotronic = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxRotronic = new System.Windows.Forms.ComboBox();
+            this.btnConnectRotronic = new System.Windows.Forms.Button();
+            this.btnDisConnectRotronik = new System.Windows.Forms.Button();
             this.panelNameSensor = new System.Windows.Forms.Panel();
             this.labelNameSensor = new System.Windows.Forms.Label();
             this.panelNameModul = new System.Windows.Forms.Panel();
@@ -90,19 +99,10 @@
             this.plus40Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.plus50Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.plus60Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelRotronik = new System.Windows.Forms.Panel();
-            this.btnStopRotronik = new System.Windows.Forms.Button();
-            this.btnStartRotronik = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.intervalSendRotronic = new System.Windows.Forms.NumericUpDown();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBoxRotronic = new System.Windows.Forms.ComboBox();
-            this.btnConnectRotronic = new System.Windows.Forms.Button();
-            this.btnDisConnectRotronik = new System.Windows.Forms.Button();
             this.panelSensor = new System.Windows.Forms.Panel();
-            this.textBoxHmp = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblCountReadMessage = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxHmp = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panelChoiseSensor.SuspendLayout();
             this.panelHMP155.SuspendLayout();
@@ -111,6 +111,10 @@
             this.groupBoxJobHmp.SuspendLayout();
             this.groupBoxTimeSendHmp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.intervalSend)).BeginInit();
+            this.panelRotronik.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.intervalSendRotronic)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.panelNameSensor.SuspendLayout();
             this.panelNameModul.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -120,10 +124,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.countModulsDtv)).BeginInit();
             this.groupBoxComPort.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panelRotronik.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.intervalSendRotronic)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.panelSensor.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -363,6 +363,112 @@
             0,
             0});
             // 
+            // panelRotronik
+            // 
+            this.panelRotronik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRotronik.Controls.Add(this.btnStopRotronik);
+            this.panelRotronik.Controls.Add(this.btnStartRotronik);
+            this.panelRotronik.Controls.Add(this.groupBox3);
+            this.panelRotronik.Controls.Add(this.groupBox1);
+            this.panelRotronik.Location = new System.Drawing.Point(953, 69);
+            this.panelRotronik.Name = "panelRotronik";
+            this.panelRotronik.Size = new System.Drawing.Size(344, 267);
+            this.panelRotronik.TabIndex = 17;
+            // 
+            // btnStopRotronik
+            // 
+            this.btnStopRotronik.Location = new System.Drawing.Point(195, 227);
+            this.btnStopRotronik.Name = "btnStopRotronik";
+            this.btnStopRotronik.Size = new System.Drawing.Size(144, 35);
+            this.btnStopRotronik.TabIndex = 27;
+            this.btnStopRotronik.Text = "Остановить";
+            this.btnStopRotronik.UseVisualStyleBackColor = true;
+            // 
+            // btnStartRotronik
+            // 
+            this.btnStartRotronik.Location = new System.Drawing.Point(4, 227);
+            this.btnStartRotronik.Name = "btnStartRotronik";
+            this.btnStartRotronik.Size = new System.Drawing.Size(144, 35);
+            this.btnStartRotronik.TabIndex = 27;
+            this.btnStartRotronik.Text = "Начать опрос";
+            this.btnStartRotronik.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.intervalSendRotronic);
+            this.groupBox3.Location = new System.Drawing.Point(166, 5);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(166, 58);
+            this.groupBox3.TabIndex = 27;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Время опроса";
+            // 
+            // intervalSendRotronic
+            // 
+            this.intervalSendRotronic.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.intervalSendRotronic.Location = new System.Drawing.Point(6, 25);
+            this.intervalSendRotronic.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.intervalSendRotronic.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.intervalSendRotronic.Name = "intervalSendRotronic";
+            this.intervalSendRotronic.Size = new System.Drawing.Size(134, 22);
+            this.intervalSendRotronic.TabIndex = 5;
+            this.intervalSendRotronic.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.intervalSendRotronic.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.comboBoxRotronic);
+            this.groupBox1.Controls.Add(this.btnConnectRotronic);
+            this.groupBox1.Controls.Add(this.btnDisConnectRotronik);
+            this.groupBox1.Location = new System.Drawing.Point(4, 5);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(156, 142);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Ком порт";
+            // 
+            // comboBoxRotronic
+            // 
+            this.comboBoxRotronic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRotronic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxRotronic.FormattingEnabled = true;
+            this.comboBoxRotronic.Location = new System.Drawing.Point(6, 25);
+            this.comboBoxRotronic.Name = "comboBoxRotronic";
+            this.comboBoxRotronic.Size = new System.Drawing.Size(142, 26);
+            this.comboBoxRotronic.TabIndex = 2;
+            // 
+            // btnConnectRotronic
+            // 
+            this.btnConnectRotronic.AutoSize = true;
+            this.btnConnectRotronic.Location = new System.Drawing.Point(6, 59);
+            this.btnConnectRotronic.Name = "btnConnectRotronic";
+            this.btnConnectRotronic.Size = new System.Drawing.Size(143, 32);
+            this.btnConnectRotronic.TabIndex = 3;
+            this.btnConnectRotronic.Text = "Подключиться";
+            this.btnConnectRotronic.UseVisualStyleBackColor = true;
+            // 
+            // btnDisConnectRotronik
+            // 
+            this.btnDisConnectRotronik.AutoSize = true;
+            this.btnDisConnectRotronik.Location = new System.Drawing.Point(6, 97);
+            this.btnDisConnectRotronik.Name = "btnDisConnectRotronik";
+            this.btnDisConnectRotronik.Size = new System.Drawing.Size(143, 32);
+            this.btnDisConnectRotronik.TabIndex = 15;
+            this.btnDisConnectRotronik.Text = "Отключиться";
+            this.btnDisConnectRotronik.UseVisualStyleBackColor = true;
+            // 
             // panelNameSensor
             // 
             this.panelNameSensor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -478,9 +584,9 @@
             // 
             this.btnCalculateCoeff.Location = new System.Drawing.Point(743, 3);
             this.btnCalculateCoeff.Name = "btnCalculateCoeff";
-            this.btnCalculateCoeff.Size = new System.Drawing.Size(187, 42);
+            this.btnCalculateCoeff.Size = new System.Drawing.Size(187, 53);
             this.btnCalculateCoeff.TabIndex = 31;
-            this.btnCalculateCoeff.Text = "Коэффициенты";
+            this.btnCalculateCoeff.Text = "Рассчитать коэффициенты";
             this.btnCalculateCoeff.UseVisualStyleBackColor = true;
             this.btnCalculateCoeff.Click += new System.EventHandler(this.btnCalculateCoeff_Click);
             // 
@@ -773,112 +879,6 @@
             this.plus60Col.Name = "plus60Col";
             this.plus60Col.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // panelRotronik
-            // 
-            this.panelRotronik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRotronik.Controls.Add(this.btnStopRotronik);
-            this.panelRotronik.Controls.Add(this.btnStartRotronik);
-            this.panelRotronik.Controls.Add(this.groupBox3);
-            this.panelRotronik.Controls.Add(this.groupBox1);
-            this.panelRotronik.Location = new System.Drawing.Point(953, 69);
-            this.panelRotronik.Name = "panelRotronik";
-            this.panelRotronik.Size = new System.Drawing.Size(344, 267);
-            this.panelRotronik.TabIndex = 17;
-            // 
-            // btnStopRotronik
-            // 
-            this.btnStopRotronik.Location = new System.Drawing.Point(195, 227);
-            this.btnStopRotronik.Name = "btnStopRotronik";
-            this.btnStopRotronik.Size = new System.Drawing.Size(144, 35);
-            this.btnStopRotronik.TabIndex = 27;
-            this.btnStopRotronik.Text = "Остановить";
-            this.btnStopRotronik.UseVisualStyleBackColor = true;
-            // 
-            // btnStartRotronik
-            // 
-            this.btnStartRotronik.Location = new System.Drawing.Point(4, 227);
-            this.btnStartRotronik.Name = "btnStartRotronik";
-            this.btnStartRotronik.Size = new System.Drawing.Size(144, 35);
-            this.btnStartRotronik.TabIndex = 27;
-            this.btnStartRotronik.Text = "Начать опрос";
-            this.btnStartRotronik.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.intervalSendRotronic);
-            this.groupBox3.Location = new System.Drawing.Point(166, 5);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(166, 58);
-            this.groupBox3.TabIndex = 27;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Время опроса";
-            // 
-            // intervalSendRotronic
-            // 
-            this.intervalSendRotronic.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.intervalSendRotronic.Location = new System.Drawing.Point(6, 25);
-            this.intervalSendRotronic.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.intervalSendRotronic.Minimum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.intervalSendRotronic.Name = "intervalSendRotronic";
-            this.intervalSendRotronic.Size = new System.Drawing.Size(134, 22);
-            this.intervalSendRotronic.TabIndex = 5;
-            this.intervalSendRotronic.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.intervalSendRotronic.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.comboBoxRotronic);
-            this.groupBox1.Controls.Add(this.btnConnectRotronic);
-            this.groupBox1.Controls.Add(this.btnDisConnectRotronik);
-            this.groupBox1.Location = new System.Drawing.Point(4, 5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(156, 142);
-            this.groupBox1.TabIndex = 24;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Ком порт";
-            // 
-            // comboBoxRotronic
-            // 
-            this.comboBoxRotronic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxRotronic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxRotronic.FormattingEnabled = true;
-            this.comboBoxRotronic.Location = new System.Drawing.Point(6, 25);
-            this.comboBoxRotronic.Name = "comboBoxRotronic";
-            this.comboBoxRotronic.Size = new System.Drawing.Size(142, 26);
-            this.comboBoxRotronic.TabIndex = 2;
-            // 
-            // btnConnectRotronic
-            // 
-            this.btnConnectRotronic.AutoSize = true;
-            this.btnConnectRotronic.Location = new System.Drawing.Point(6, 59);
-            this.btnConnectRotronic.Name = "btnConnectRotronic";
-            this.btnConnectRotronic.Size = new System.Drawing.Size(143, 32);
-            this.btnConnectRotronic.TabIndex = 3;
-            this.btnConnectRotronic.Text = "Подключиться";
-            this.btnConnectRotronic.UseVisualStyleBackColor = true;
-            // 
-            // btnDisConnectRotronik
-            // 
-            this.btnDisConnectRotronik.AutoSize = true;
-            this.btnDisConnectRotronik.Location = new System.Drawing.Point(6, 97);
-            this.btnDisConnectRotronik.Name = "btnDisConnectRotronik";
-            this.btnDisConnectRotronik.Size = new System.Drawing.Size(143, 32);
-            this.btnDisConnectRotronik.TabIndex = 15;
-            this.btnDisConnectRotronik.Text = "Отключиться";
-            this.btnDisConnectRotronik.UseVisualStyleBackColor = true;
-            // 
             // panelSensor
             // 
             this.panelSensor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -889,6 +889,26 @@
             this.panelSensor.Name = "panelSensor";
             this.panelSensor.Size = new System.Drawing.Size(344, 663);
             this.panelSensor.TabIndex = 0;
+            // 
+            // lblCountReadMessage
+            // 
+            this.lblCountReadMessage.AutoSize = true;
+            this.lblCountReadMessage.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblCountReadMessage.Location = new System.Drawing.Point(137, 641);
+            this.lblCountReadMessage.Name = "lblCountReadMessage";
+            this.lblCountReadMessage.Size = new System.Drawing.Size(14, 14);
+            this.lblCountReadMessage.TabIndex = 11;
+            this.lblCountReadMessage.Text = "-";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(0, 641);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(140, 14);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Принятые сообщения:";
             // 
             // textBoxHmp
             // 
@@ -901,26 +921,6 @@
             this.textBoxHmp.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxHmp.Size = new System.Drawing.Size(336, 370);
             this.textBoxHmp.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(0, 641);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 14);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Принятые сообщения:";
-            // 
-            // lblCountReadMessage
-            // 
-            this.lblCountReadMessage.AutoSize = true;
-            this.lblCountReadMessage.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblCountReadMessage.Location = new System.Drawing.Point(137, 641);
-            this.lblCountReadMessage.Name = "lblCountReadMessage";
-            this.lblCountReadMessage.Size = new System.Drawing.Size(14, 14);
-            this.lblCountReadMessage.TabIndex = 11;
-            this.lblCountReadMessage.Text = "-";
             // 
             // Form1
             // 
@@ -947,6 +947,11 @@
             this.groupBoxJobHmp.PerformLayout();
             this.groupBoxTimeSendHmp.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.intervalSend)).EndInit();
+            this.panelRotronik.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.intervalSendRotronic)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panelNameSensor.ResumeLayout(false);
             this.panelNameModul.ResumeLayout(false);
             this.panelNameModul.PerformLayout();
@@ -962,11 +967,6 @@
             this.groupBoxComPort.ResumeLayout(false);
             this.groupBoxComPort.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panelRotronik.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.intervalSendRotronic)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.panelSensor.ResumeLayout(false);
             this.panelSensor.PerformLayout();
             this.ResumeLayout(false);

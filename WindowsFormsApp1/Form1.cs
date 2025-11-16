@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.IO.Ports;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -46,7 +47,6 @@ namespace WindowsFormsApp1
         private SensorSetting comPortSettingDtv;
         private SensorSetting comPortSettingHMP;
         private SensorSetting comPortSettingRotronik;
-        private SensorSetting comPortSettingThermoEspec;
 
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private bool isPolling = false;
@@ -66,7 +66,6 @@ namespace WindowsFormsApp1
             comPortSettingDtv = new SensorSetting("", 9600, Parity.Even, 7, StopBits.One, Handshake.None, 1000);
             comPortSettingHMP = new SensorSetting("", 9600, Parity.Even, 7, StopBits.One, Handshake.None, 5000);
             comPortSettingRotronik = new SensorSetting("", 19200, Parity.None, 8, StopBits.One, Handshake.None, 1000);
-            comPortSettingThermoEspec = new SensorSetting("", 9600, Parity.Even, 7, StopBits.One, Handshake.None, 1000);
 
             // Привязка событий
             btnConnectHmp.Click += (s, ev) => ConnectToComPort(comPortSettingHMP, "HMP155");
@@ -476,9 +475,6 @@ namespace WindowsFormsApp1
                     await Task.Delay(100);
                 }
             });
-
-
-
         } // сделана
         private void btnWriteDataInTable_Click(object sender, EventArgs e)
         {
@@ -650,7 +646,7 @@ namespace WindowsFormsApp1
             panelChoiseSensor.Visible = false;
             panelHMP155.Visible = choice == "HMP155";
             panelRotronik.Visible = choice == "Rotronik HP32";
-        } // добавить потом мит
+        } // сделана
         private void LoadFile()
         {
             OpenFileDialog openFile = new OpenFileDialog();
@@ -678,34 +674,40 @@ namespace WindowsFormsApp1
 
                 DataTableDelete();
                 ConfigureDataGridViewAppearance();
-
-                using (var workbook = new XLWorkbook(path))
+                try
                 {
-                    var worksheet = workbook.Worksheet(1);
-
-                    for (int rowTable = 0, rowExel = variant;
-                         rowTable < dataGridView1.Rows.Count && rowExel <= worksheet.LastRowUsed()?.RowNumber();
-                         rowTable++, rowExel++)
+                    using (var workbook = new XLWorkbook(path))
                     {
-                        for (int colTable = 1, colExel = 2;
-                             colTable < dataGridView1.ColumnCount;
-                             colTable++, colExel++)
-                        {
-                            var cell = worksheet.Cell(rowExel, colExel);
-                            if (cell == null || cell.IsEmpty()) continue;
+                        var worksheet = workbook.Worksheet(1);
 
-                            // Всегда сохраняем原始 значение (число или строку)
-                            if (double.TryParse(cell.Value.ToString(), out double num))
+                        for (int rowTable = 0, rowExel = variant;
+                             rowTable < dataGridView1.Rows.Count && rowExel <= worksheet.LastRowUsed()?.RowNumber();
+                             rowTable++, rowExel++)
+                        {
+                            for (int colTable = 1, colExel = 2;
+                                 colTable < dataGridView1.ColumnCount;
+                                 colTable++, colExel++)
                             {
-                                dataGridView1.Rows[rowTable].Cells[colTable].Value = num;
-                            }
-                            else
-                            {
-                                dataGridView1.Rows[rowTable].Cells[colTable].Value = cell.Value.ToString();
+                                var cell = worksheet.Cell(rowExel, colExel);
+                                if (cell == null || cell.IsEmpty()) continue;
+
+                                if (double.TryParse(cell.Value.ToString(), out double num))
+                                {
+                                    dataGridView1.Rows[rowTable].Cells[colTable].Value = num;
+                                }
+                                else
+                                {
+                                    dataGridView1.Rows[rowTable].Cells[colTable].Value = cell.Value.ToString();
+                                }
                             }
                         }
                     }
                 }
+                catch    
+                {
+                    MessageBox.Show("Ошибка при загрузке файла");
+                }
+                
             }
         }// сделана
         private void DataTableDelete()

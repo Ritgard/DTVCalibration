@@ -69,7 +69,6 @@ namespace WindowsFormsApp1
 
             buttonSaveCoeff.Click += ButtonSaveCoeff_Click;
 
-            tableLayoutPanel.SetColumnSpan(buttonSaveCoeff, columns);
             tableLayoutPanel.Controls.Add(buttonSaveCoeff, 0, buttonRow);
 
             this.Controls.Add(tableLayoutPanel);
@@ -191,6 +190,5 @@ namespace WindowsFormsApp1
             var box = this.Controls.Find(name, true).First() as TextBox;
             return box?.Text ?? "";
         }
-
     }
 }
