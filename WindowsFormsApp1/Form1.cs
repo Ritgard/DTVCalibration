@@ -744,8 +744,15 @@ namespace WindowsFormsApp1
         private void ApplyModernStyle()
         {
             // Основной фон формы
-            this.BackColor = Color.FromArgb(240, 245, 255); // Светло-голубой фон
-            this.ForeColor = Color.FromArgb(40, 40, 40);
+            panel1.BackColor = Color.FromArgb(240, 245, 255); // Светло-голубой фон
+            panel1.ForeColor = Color.FromArgb(40, 40, 40);
+
+            panelHMP155.BackColor = Color.FromArgb(240, 245, 255);
+            panelHMP155.ForeColor = Color.FromArgb(40, 40, 40);
+
+            panelChoiseSensor.BackColor = Color.FromArgb(240, 245, 255);
+            panelChoiseSensor.ForeColor = Color.FromArgb(40, 40, 40); 
+
 
             // Панель "Модули ДТВ" — верхняя левая
             panelHMP155.BackColor = Color.White;
@@ -787,7 +794,6 @@ namespace WindowsFormsApp1
                 btn.FlatAppearance.BorderSize = 0;
                 btn.FlatAppearance.MouseOverBackColor = buttonHover;
                 btn.FlatAppearance.MouseDownBackColor = buttonPressed;
-                //btn.Font = new System.Drawing.Font("Segoe UI", 9F, FontStyle.Bold);
                 btn.Padding = new Padding(8, 4, 8, 4);
                 btn.Cursor = Cursors.Hand;
             }
@@ -818,7 +824,6 @@ namespace WindowsFormsApp1
                 cb.BackColor = Color.White;
                 cb.ForeColor = Color.FromArgb(30, 30, 30);
                 cb.FlatStyle = FlatStyle.Flat;
-                //cb.Font = new System.Drawing.Font("Segoe UI", 9F);
             }
 
             // RadioButton
@@ -826,7 +831,6 @@ namespace WindowsFormsApp1
                 .Where(r => r != null))
             {
                 rb.ForeColor = Color.FromArgb(50, 50, 50);
-                //rb.Font = new System.Drawing.Font("Segoe UI");
                 rb.AutoSize = true;
             }
 
@@ -841,7 +845,6 @@ namespace WindowsFormsApp1
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(33, 150, 243);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            //dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9F, FontStyle.Bold);
             dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 250);
             dataGridView1.GridColor = Color.FromArgb(220, 220, 240);
             dataGridView1.BorderStyle = BorderStyle.None;
@@ -852,9 +855,6 @@ namespace WindowsFormsApp1
             this.Text = "📊 Калибровка и проверка температуры ДТВ";
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.StartPosition = FormStartPosition.CenterScreen;
-
-            //    // Добавим немного отступов
-            //    this.Padding = new Padding(10);
         }
     }
 }
