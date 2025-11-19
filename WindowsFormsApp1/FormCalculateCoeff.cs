@@ -10,15 +10,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Color = System.Drawing.Color;
 
 namespace WindowsFormsApp1
 {
     public partial class FormCalculateCoeff : Form
     {
+
         private readonly int _moduleCount;
         public FormCalculateCoeff(int countModuls)
         {
             InitializeComponent();
+
+            this.BackColor = Color.FromArgb(240, 245, 255); // Светло-голубой фон
+            this.ForeColor = Color.FromArgb(40, 40, 40);
 
             _moduleCount = countModuls;
 
@@ -44,7 +49,6 @@ namespace WindowsFormsApp1
                 int row = i / columns;
                 int col = i % columns;
 
-                // Убедимся, что строка существует
                 while (tableLayoutPanel.RowCount <= row)
                 {
                     tableLayoutPanel.RowCount++;
@@ -64,8 +68,22 @@ namespace WindowsFormsApp1
                 Text = "Сохранить коэффициенты",
                 Anchor = AnchorStyles.Top,
                 AutoSize = true,
-                Padding = new Padding(10)
+                Padding = new Padding(10),
             };
+
+            foreach (Button btn in new[] {
+                    buttonSaveCoeff
+                }.Where(b => b != null))
+            {
+                btn.BackColor = Color.FromArgb(33, 150, 243);
+                btn.ForeColor = Color.White;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, 118, 210);
+                btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(20, 100, 180);
+                btn.Padding = new Padding(8, 4, 8, 4);
+                btn.Cursor = Cursors.Hand;
+            }
 
             buttonSaveCoeff.Click += ButtonSaveCoeff_Click;
 
@@ -142,16 +160,14 @@ namespace WindowsFormsApp1
                 folderDialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
                 if (folderDialog.ShowDialog() != DialogResult.OK)
-                    return; // Пользователь отменил
+                    return;
 
                 string selectedFolder = folderDialog.SelectedPath;
 
-                // Обрабатываем каждый модуль
                 for (int mod = 0; mod < _moduleCount; mod++)
                 {
                     try
                     {
-                        // Загружаем шаблон заново для каждого модуля
                         using (var workbook = new ClosedXML.Excel.XLWorkbook(templatePath))
                         {
                             var worksheet = workbook.Worksheet(1);
@@ -166,7 +182,6 @@ namespace WindowsFormsApp1
                             worksheet.Cell(23, 3).Value = a2;
                             worksheet.Cell(24, 3).Value = a3;
 
-                            // Формируем полный путь: папка + имя файла
                             string fileName = $"DMP_T_id{mod}.xlsx";
                             string fullPath = Path.Combine(selectedFolder, fileName);
 
@@ -176,14 +191,12 @@ namespace WindowsFormsApp1
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Ошибка при сохранении модуля {mod}:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return; // или continue, если хотите сохранить остальные
+                        return;
                     }
                 }
-
                 MessageBox.Show($"Коэффициенты для {_moduleCount} модулей сохранены в:\n{selectedFolder}", "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private string GetTextBoxValue(int module, int j)
         {
             string name = $"textBoxModule{module}{j}";

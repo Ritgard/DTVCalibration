@@ -753,19 +753,20 @@ namespace WindowsFormsApp1
             panelChoiseSensor.BackColor = Color.FromArgb(240, 245, 255);
             panelChoiseSensor.ForeColor = Color.FromArgb(40, 40, 40); 
 
-
             // Панель "Модули ДТВ" — верхняя левая
-            panelHMP155.BackColor = Color.White;
+            panelHMP155.BackColor = Color.FromArgb(240, 245, 255);
+            panelHMP155.ForeColor = Color.FromArgb(40, 40, 40);
             panelHMP155.BorderStyle = BorderStyle.None;
             panelHMP155.Padding = new Padding(12);
 
             // Панель "Эталон" — правая
-            panelRotronik.BackColor = Color.White;
+            panelRotronik.BackColor = Color.FromArgb(240, 245, 255);
+            panelChoiseSensor.ForeColor = Color.FromArgb(40, 40, 40);
             panelRotronik.BorderStyle = BorderStyle.None;
             panelRotronik.Padding = new Padding(12);
 
             // Панель выбора сенсора — центральная
-            panelChoiseSensor.BackColor = Color.White;
+            panelChoiseSensor.BackColor = Color.FromArgb(240, 245, 255);
             panelChoiseSensor.BorderStyle = BorderStyle.None;
             panelChoiseSensor.Padding = new Padding(12);
 
@@ -775,7 +776,6 @@ namespace WindowsFormsApp1
             Color buttonPressed = Color.FromArgb(20, 100, 180);
             Color buttonText = Color.White;
 
-            // Кнопки: Подключиться, Отключиться, Установить, Рассчитать и т.д.
             foreach (Button btn in new[] {
                     btnConnectHmp, btnDisConnectHmp,
                     btnConnectRotronic, btnDisConnectRotronik,

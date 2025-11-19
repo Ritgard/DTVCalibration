@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelChoiseSensor = new System.Windows.Forms.Panel();
             this.btnChoiceSensor = new System.Windows.Forms.Button();
@@ -60,6 +60,10 @@
             this.comboBoxRotronic = new System.Windows.Forms.ComboBox();
             this.btnConnectRotronic = new System.Windows.Forms.Button();
             this.btnDisConnectRotronik = new System.Windows.Forms.Button();
+            this.panelSensor = new System.Windows.Forms.Panel();
+            this.lblCountReadMessage = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxHmp = new System.Windows.Forms.TextBox();
             this.panelNameSensor = new System.Windows.Forms.Panel();
             this.labelNameSensor = new System.Windows.Forms.Label();
             this.panelNameModul = new System.Windows.Forms.Panel();
@@ -99,10 +103,6 @@
             this.plus40Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.plus50Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.plus60Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelSensor = new System.Windows.Forms.Panel();
-            this.lblCountReadMessage = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxHmp = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panelChoiseSensor.SuspendLayout();
             this.panelHMP155.SuspendLayout();
@@ -115,6 +115,7 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.intervalSendRotronic)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panelSensor.SuspendLayout();
             this.panelNameSensor.SuspendLayout();
             this.panelNameModul.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -124,7 +125,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.countModulsDtv)).BeginInit();
             this.groupBoxComPort.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panelSensor.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -147,6 +147,7 @@
             // 
             // panelChoiseSensor
             // 
+            this.panelChoiseSensor.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelChoiseSensor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelChoiseSensor.Controls.Add(this.btnChoiceSensor);
             this.panelChoiseSensor.Controls.Add(this.label1);
@@ -468,6 +469,48 @@
             this.btnDisConnectRotronik.Text = "Отключиться";
             this.btnDisConnectRotronik.UseVisualStyleBackColor = true;
             // 
+            // panelSensor
+            // 
+            this.panelSensor.Controls.Add(this.lblCountReadMessage);
+            this.panelSensor.Controls.Add(this.label2);
+            this.panelSensor.Controls.Add(this.textBoxHmp);
+            this.panelSensor.Location = new System.Drawing.Point(955, 69);
+            this.panelSensor.Name = "panelSensor";
+            this.panelSensor.Size = new System.Drawing.Size(362, 663);
+            this.panelSensor.TabIndex = 0;
+            // 
+            // lblCountReadMessage
+            // 
+            this.lblCountReadMessage.AutoSize = true;
+            this.lblCountReadMessage.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblCountReadMessage.Location = new System.Drawing.Point(139, 649);
+            this.lblCountReadMessage.Name = "lblCountReadMessage";
+            this.lblCountReadMessage.Size = new System.Drawing.Size(14, 14);
+            this.lblCountReadMessage.TabIndex = 11;
+            this.lblCountReadMessage.Text = "-";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(0, 649);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(140, 14);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Принятые сообщения:";
+            // 
+            // textBoxHmp
+            // 
+            this.textBoxHmp.BackColor = System.Drawing.Color.White;
+            this.textBoxHmp.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxHmp.ForeColor = System.Drawing.Color.Black;
+            this.textBoxHmp.Location = new System.Drawing.Point(3, 268);
+            this.textBoxHmp.Multiline = true;
+            this.textBoxHmp.Name = "textBoxHmp";
+            this.textBoxHmp.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxHmp.Size = new System.Drawing.Size(354, 378);
+            this.textBoxHmp.TabIndex = 9;
+            // 
             // panelNameSensor
             // 
             this.panelNameSensor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -757,14 +800,14 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle70.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle70.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle70.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle70.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle70.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle70.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle70.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle70;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tempCol,
@@ -780,22 +823,22 @@
             this.plus40Col,
             this.plus50Col,
             this.plus60Col});
-            dataGridViewCellStyle71.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle71.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle71.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle71.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle71.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle71.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle71.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle71;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.MenuText;
             this.dataGridView1.Location = new System.Drawing.Point(3, 151);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle72;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 50;
             this.dataGridView1.Size = new System.Drawing.Size(956, 377);
             this.dataGridView1.TabIndex = 21;
@@ -878,48 +921,6 @@
             this.plus60Col.Name = "plus60Col";
             this.plus60Col.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // panelSensor
-            // 
-            this.panelSensor.Controls.Add(this.lblCountReadMessage);
-            this.panelSensor.Controls.Add(this.label2);
-            this.panelSensor.Controls.Add(this.textBoxHmp);
-            this.panelSensor.Location = new System.Drawing.Point(955, 69);
-            this.panelSensor.Name = "panelSensor";
-            this.panelSensor.Size = new System.Drawing.Size(362, 663);
-            this.panelSensor.TabIndex = 0;
-            // 
-            // lblCountReadMessage
-            // 
-            this.lblCountReadMessage.AutoSize = true;
-            this.lblCountReadMessage.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblCountReadMessage.Location = new System.Drawing.Point(139, 649);
-            this.lblCountReadMessage.Name = "lblCountReadMessage";
-            this.lblCountReadMessage.Size = new System.Drawing.Size(14, 14);
-            this.lblCountReadMessage.TabIndex = 11;
-            this.lblCountReadMessage.Text = "-";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(0, 649);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 14);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Принятые сообщения:";
-            // 
-            // textBoxHmp
-            // 
-            this.textBoxHmp.BackColor = System.Drawing.Color.White;
-            this.textBoxHmp.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxHmp.ForeColor = System.Drawing.Color.Black;
-            this.textBoxHmp.Location = new System.Drawing.Point(3, 268);
-            this.textBoxHmp.Multiline = true;
-            this.textBoxHmp.Name = "textBoxHmp";
-            this.textBoxHmp.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxHmp.Size = new System.Drawing.Size(354, 378);
-            this.textBoxHmp.TabIndex = 9;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -950,6 +951,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.intervalSendRotronic)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panelSensor.ResumeLayout(false);
+            this.panelSensor.PerformLayout();
             this.panelNameSensor.ResumeLayout(false);
             this.panelNameModul.ResumeLayout(false);
             this.panelNameModul.PerformLayout();
@@ -965,8 +968,6 @@
             this.groupBoxComPort.ResumeLayout(false);
             this.groupBoxComPort.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panelSensor.ResumeLayout(false);
-            this.panelSensor.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
