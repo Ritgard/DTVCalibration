@@ -69,12 +69,12 @@
             this.panelNameModul = new System.Windows.Forms.Panel();
             this.labelNameModul = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnCalculateCoeff = new System.Windows.Forms.Button();
             this.btnLoadFile = new System.Windows.Forms.Button();
             this.btnExportCalibration = new System.Windows.Forms.Button();
             this.btnScreenShot = new System.Windows.Forms.Button();
             this.btnSendDtv = new System.Windows.Forms.Button();
             this.textBoxParsedDtv = new System.Windows.Forms.TextBox();
-            this.btnCalculateCoeff = new System.Windows.Forms.Button();
             this.textBoxDtv = new System.Windows.Forms.TextBox();
             this.groupBoxTemp = new System.Windows.Forms.GroupBox();
             this.textBoxTemp = new System.Windows.Forms.TextBox();
@@ -209,7 +209,7 @@
             this.groupBox2.Controls.Add(this.comboBoxHmp);
             this.groupBox2.Controls.Add(this.btnConnectHmp);
             this.groupBox2.Controls.Add(this.btnDisConnectHmp);
-            this.groupBox2.Location = new System.Drawing.Point(3, 5);
+            this.groupBox2.Location = new System.Drawing.Point(4, 1);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(166, 142);
             this.groupBox2.TabIndex = 24;
@@ -258,7 +258,7 @@
             // 
             this.groupBoxSendHmp.Controls.Add(this.rBSend1);
             this.groupBoxSendHmp.Controls.Add(this.rBSend0);
-            this.groupBoxSendHmp.Location = new System.Drawing.Point(196, 102);
+            this.groupBoxSendHmp.Location = new System.Drawing.Point(196, 99);
             this.groupBoxSendHmp.Name = "groupBoxSendHmp";
             this.groupBoxSendHmp.Size = new System.Drawing.Size(162, 83);
             this.groupBoxSendHmp.TabIndex = 25;
@@ -300,7 +300,7 @@
             // 
             this.groupBoxJobHmp.Controls.Add(this.rBBezOprosa);
             this.groupBoxJobHmp.Controls.Add(this.rBPoZaprosu);
-            this.groupBoxJobHmp.Location = new System.Drawing.Point(196, 5);
+            this.groupBoxJobHmp.Location = new System.Drawing.Point(196, 3);
             this.groupBoxJobHmp.Name = "groupBoxJobHmp";
             this.groupBoxJobHmp.Size = new System.Drawing.Size(161, 91);
             this.groupBoxJobHmp.TabIndex = 24;
@@ -555,12 +555,12 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnCalculateCoeff);
             this.panel3.Controls.Add(this.btnLoadFile);
             this.panel3.Controls.Add(this.btnExportCalibration);
             this.panel3.Controls.Add(this.btnScreenShot);
             this.panel3.Controls.Add(this.btnSendDtv);
             this.panel3.Controls.Add(this.textBoxParsedDtv);
-            this.panel3.Controls.Add(this.btnCalculateCoeff);
             this.panel3.Controls.Add(this.textBoxDtv);
             this.panel3.Controls.Add(this.groupBoxTemp);
             this.panel3.Controls.Add(this.groupBoxJob);
@@ -572,6 +572,15 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(937, 663);
             this.panel3.TabIndex = 1;
+            // 
+            // btnCalculateCoeff
+            // 
+            this.btnCalculateCoeff.Location = new System.Drawing.Point(745, 5);
+            this.btnCalculateCoeff.Name = "btnCalculateCoeff";
+            this.btnCalculateCoeff.Size = new System.Drawing.Size(184, 58);
+            this.btnCalculateCoeff.TabIndex = 36;
+            this.btnCalculateCoeff.Text = "Рассчитать коэффициенты";
+            this.btnCalculateCoeff.UseVisualStyleBackColor = true;
             // 
             // btnLoadFile
             // 
@@ -621,16 +630,6 @@
             this.textBoxParsedDtv.Size = new System.Drawing.Size(51, 171);
             this.textBoxParsedDtv.TabIndex = 3;
             this.textBoxParsedDtv.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnCalculateCoeff
-            // 
-            this.btnCalculateCoeff.Location = new System.Drawing.Point(745, 3);
-            this.btnCalculateCoeff.Name = "btnCalculateCoeff";
-            this.btnCalculateCoeff.Size = new System.Drawing.Size(184, 53);
-            this.btnCalculateCoeff.TabIndex = 31;
-            this.btnCalculateCoeff.Text = "Рассчитать коэффициенты";
-            this.btnCalculateCoeff.UseVisualStyleBackColor = true;
-            this.btnCalculateCoeff.Click += new System.EventHandler(this.btnCalculateCoeff_Click);
             // 
             // textBoxDtv
             // 
@@ -683,6 +682,7 @@
             this.rBChecked.Text = "Проверка";
             this.rBChecked.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rBChecked.UseVisualStyleBackColor = true;
+            this.rBChecked.CheckedChanged += new System.EventHandler(this.rBChecked_CheckedChanged);
             // 
             // rBCalibration
             // 
@@ -694,6 +694,7 @@
             this.rBCalibration.TabStop = true;
             this.rBCalibration.Text = "Калибровка";
             this.rBCalibration.UseVisualStyleBackColor = true;
+            this.rBCalibration.CheckedChanged += new System.EventHandler(this.rBCalibration_CheckedChanged);
             // 
             // groupBoxCountModuls
             // 
@@ -1007,7 +1008,6 @@
         private System.Windows.Forms.GroupBox groupBoxSendHmp;
         private System.Windows.Forms.GroupBox groupBoxJobHmp;
         private System.Windows.Forms.GroupBox groupBoxTimeSendHmp;
-        private System.Windows.Forms.Button btnCalculateCoeff;
         private System.Windows.Forms.Panel panelNameModul;
         private System.Windows.Forms.Label labelNameModul;
         private System.Windows.Forms.Panel panelNameSensor;
@@ -1047,6 +1047,7 @@
         private System.Windows.Forms.Button btnLoadFile;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblCountReadMessage;
+        private System.Windows.Forms.Button btnCalculateCoeff;
     }
 }
 

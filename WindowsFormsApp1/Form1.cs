@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Math;
 using DocumentFormat.OpenXml.Office2016.Drawing.Command;
 using DocumentFormat.OpenXml.Spreadsheet;
 using MathNet.Numerics;
@@ -61,6 +62,10 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Text = "Калибровка и проверка температуры ДТВ";
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             timer.Interval = 50;
             timer.Tick += StartTimerSendSensor;
 
@@ -86,6 +91,7 @@ namespace WindowsFormsApp1
             btnLoadFile.Click += (s, ev) => LoadFile();
             btnScreenShot.Click += (s, ev) => MakeScreenShot();
             btnExportCalibration.Click += (s, ev) => ExportCalibration();
+            btnCalculateCoeff.Click += (s, ev) => CalculateCoefforRate();
 
             // Заполнение COM-портов
             string[] ports = SerialPort.GetPortNames();
@@ -98,7 +104,6 @@ namespace WindowsFormsApp1
             for (int i = 0; i < 9; i++)
                 dataGridView1.Rows.Add(i.ToString());
 
-            //ColoringTable();
             ApplyModernStyle();
             ConfigureDataGridViewAppearance();
 
@@ -140,28 +145,6 @@ namespace WindowsFormsApp1
             int visibleRowCount = Math.Min(9, dataGridView1.Rows.Count);
             int totalHeight = dataGridView1.ColumnHeadersHeight + visibleRowCount * 30 + 31;
             dataGridView1.Height = totalHeight;
-        } // сделана
-        private void ColoringTable()
-        {
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                dataGridView1.Rows[i].Cells[0].Style.BackColor = System.Drawing.Color.DarkCyan;
-                dataGridView1.Rows[i].Cells[0].Style.ForeColor = System.Drawing.Color.White;
-            }
-            for (int i = 0; i < dataGridView1.Columns.Count; i++)
-            {
-                dataGridView1.Rows[0].Cells[i].Style.BackColor = System.Drawing.Color.DarkCyan;
-                dataGridView1.Rows[0].Cells[i].Style.ForeColor = System.Drawing.Color.White;
-            }
-            for (int row = 1; row < dataGridView1.Rows.Count; row++)
-            {
-                for (int col = 1; col < dataGridView1.Columns.Count; col++)
-                {
-                    dataGridView1.Rows[row].Cells[col].Style.BackColor = System.Drawing.Color.CadetBlue;
-                    dataGridView1.Rows[row].Cells[col].Style.ForeColor = System.Drawing.Color.White;
-                }
-                row++;
-            }
         } // сделана
         private void ConnectToComPort(SensorSetting settings, string nameSensor)
         {
@@ -426,7 +409,6 @@ namespace WindowsFormsApp1
             {
                 dataGridView1.Rows.Add(i.ToString());
             }
-            ColoringTable();
             ConfigureDataGridViewAppearance();
         } // сделана
         private void stopSenderSensor()
@@ -538,7 +520,6 @@ namespace WindowsFormsApp1
                         {
                             dataGridView1.Rows[row].Cells[cells].Value = val;
                         }
-
                     }
                 }
                 catch
@@ -594,7 +575,41 @@ namespace WindowsFormsApp1
             }
             MessageBox.Show($"Файл успешно сохранён в {fullPath}");
         } // сделана
-        private void btnCalculateCoeff_Click(object sender, EventArgs e)
+        private void CalculateCoefforRate()
+        {
+            if (rBCalibration.Checked)
+            {
+                CalculateCoeff();
+            }
+            else if (rBChecked.Checked)
+            {
+                ErrorCalculation();
+            }
+        }
+        private void ErrorCalculation()
+        {
+            int countModuls = Convert.ToInt32(countModulsDtv.Value);
+
+            double[] temps = new double[dataGridView1.Columns.Count - 1]; // массив температур
+            double[,] codes = new double[countModuls, temps.Length]; // массив температур
+
+            for (int columnCount = 1, countArray = 0; columnCount < dataGridView1.Columns.Count; columnCount++, countArray++)
+            {
+                temps[countArray] = Convert.ToDouble(dataGridView1.Rows[0].Cells[columnCount].Value);
+            }
+
+            for (int rowTable = 1, rowArray = 0; rowTable < dataGridView1.Rows.Count; rowTable++, rowArray++)
+            {
+                for (int colTable = 1, colArray = 0; colTable < dataGridView1.Columns.Count; colTable++, colArray++)
+                {
+                    codes[rowArray, colArray] = Convert.ToDouble(dataGridView1.Rows[rowTable].Cells[colTable].Value);
+                }
+            }
+
+            var errorForm = new FormViewErrorForCalibration(countModuls, temps, codes);
+            errorForm.ShowDialog();
+        }
+        private void CalculateCoeff()
         {
             int countModuls = Convert.ToInt32(countModulsDtv.Value);
 
@@ -604,7 +619,6 @@ namespace WindowsFormsApp1
 
             for (int columnCount = 1, countArray = 0; columnCount < dataGridView1.Columns.Count; columnCount++, countArray++)
             {
-
                 temps[countArray] = Convert.ToDouble(dataGridView1.Rows[0].Cells[columnCount].Value);
             }
 
@@ -673,12 +687,13 @@ namespace WindowsFormsApp1
                     }
                     else // variant == 4
                     {
-                        dataGridView1.Columns[colIndex].DefaultCellStyle.Format = null; // или ""
+                        dataGridView1.Columns[colIndex].DefaultCellStyle.Format = null;
                     }
                 }
 
                 DataTableDelete();
                 ConfigureDataGridViewAppearance();
+
                 try
                 {
                     using (var workbook = new XLWorkbook(path))
@@ -784,7 +799,7 @@ namespace WindowsFormsApp1
                     btnStartRotronik, btnStopRotronik,
                     btnSendDtv, btnWriteDataInTable,
                     btnLoadFile, btnExportCalibration,
-                    btnCalculateCoeff, btnScreenShot,
+                    btnScreenShot,btnCalculateCoeff,
                     btnSetCountModuls, btnChoiceSensor,
                 }.Where(b => b != null))
             {
@@ -850,11 +865,15 @@ namespace WindowsFormsApp1
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 255);
-
-            // Заголовок формы
-            this.Text = "📊 Калибровка и проверка температуры ДТВ";
-            this.FormBorderStyle = FormBorderStyle.Sizable;
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
+        private void rBChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            btnCalculateCoeff.Text = "Погрешность";
+        }
+        private void rBCalibration_CheckedChanged(object sender, EventArgs e)
+        {
+            btnCalculateCoeff.Text = "Рассчитать коэффициенты";
+        }
+
     }
 }
