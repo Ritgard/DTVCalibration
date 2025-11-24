@@ -607,7 +607,7 @@ namespace WindowsFormsApp1
             }
 
             var errorForm = new FormViewErrorForCalibration(countModuls, temps, codes);
-            errorForm.ShowDialog();
+            errorForm.Show();
         }
         private void CalculateCoeff()
         {

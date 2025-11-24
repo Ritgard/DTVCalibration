@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -57,31 +58,30 @@ namespace WindowsFormsApp1
                 for (int colTable = 1, colArrayCodes = 0, colArrayTemps = 0; colTable < dataGridView1.Columns.Count; colTable++, colArrayCodes++, colArrayTemps++)
                 {
                     dataGridView1.Rows[rowTable].Cells[colTable].Value = _temps[colArrayTemps] - _codes[rowArrayCodes, colArrayCodes];
+                    //dataGridView1.Rows[rowTable].Cells[colTable].Style.BackColor = System.Drawing.Color.Goldenrod;
                 }
             }
-
-
         }
         private void FormStyle()
         {
             this.Text = "Калибровка и проверка температуры ДТВ";
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = Color.FromArgb(240, 245, 255); // Светло-голубой фон
-            this.ForeColor = Color.FromArgb(40, 40, 40);
+            this.BackColor = System.Drawing.Color.FromArgb(240, 245, 255); // Светло-голубой фон
+            this.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
         }
         private void ConfigureDataGridViewAppearance()
         {
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(33, 150, 243);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(33, 150, 243);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
 
-            dataGridView1.GridColor = Color.FromArgb(220, 220, 240);
+            dataGridView1.GridColor = System.Drawing.Color.FromArgb(220, 220, 240);
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 255);
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(248, 250, 255);
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
@@ -106,7 +106,6 @@ namespace WindowsFormsApp1
             dataGridView1.Width = 70 * dataGridView1.Columns.Count + scrollBarWidth;
             dataGridView1.Height = dataGridView1.ColumnHeadersHeight + 30 * dataGridView1.Rows.Count;
 
-            // Выравниваем содержимое ячеек по центру
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
                 col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
