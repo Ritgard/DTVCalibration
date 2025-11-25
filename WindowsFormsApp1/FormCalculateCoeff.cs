@@ -177,10 +177,10 @@ namespace WindowsFormsApp1
                             string a2 = GetTextBoxValue(mod, 1);
                             string a3 = GetTextBoxValue(mod, 0);
 
-                            worksheet.Cell(21, 3).Value = a0;
-                            worksheet.Cell(22, 3).Value = a1;
-                            worksheet.Cell(23, 3).Value = a2;
-                            worksheet.Cell(24, 3).Value = a3;
+                            worksheet.Cell(21, 3).Value = Convert.ToDouble(a0);
+                            worksheet.Cell(22, 3).Value = Convert.ToDouble(a1);
+                            worksheet.Cell(23, 3).Value = Convert.ToDouble(a2);
+                            worksheet.Cell(24, 3).Value = Convert.ToDouble(a3);
 
                             string fileName = $"DMP_T_id{mod}.xlsx";
                             string fullPath = Path.Combine(selectedFolder, fileName);

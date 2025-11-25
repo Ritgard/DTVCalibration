@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,19 +24,15 @@ namespace WindowsFormsApp1
             _codes = codes;
             _moduls = countModuls;
 
-            // Добавляем строки данных
             dataGridView1.Rows.Add("Эталон");
             for (int i = 0; i < _codes.GetLength(0); i++)
                 dataGridView1.Rows.Add(i.ToString());
 
-            // Заполняем данными (числа, не строки!)
             LoadDataInTable();
 
-            // Настройка стиля — ПОСЛЕ добавления строк, но до изменения размеров формы
             FormStyle();
             ConfigureDataGridViewAppearance();
 
-            // Подгоняем форму с отступами
             int margin = 20;
             this.ClientSize = new Size(
                 dataGridView1.Width + margin * 2,
@@ -58,7 +55,7 @@ namespace WindowsFormsApp1
                 for (int colTable = 1, colArrayCodes = 0, colArrayTemps = 0; colTable < dataGridView1.Columns.Count; colTable++, colArrayCodes++, colArrayTemps++)
                 {
                     dataGridView1.Rows[rowTable].Cells[colTable].Value = _temps[colArrayTemps] - _codes[rowArrayCodes, colArrayCodes];
-                    //dataGridView1.Rows[rowTable].Cells[colTable].Style.BackColor = System.Drawing.Color.Goldenrod;
+                    dataGridView1.Rows[rowTable].Cells[colTable].Style.BackColor = ErrorColors.GetGradientColor(_temps[colArrayTemps] - _codes[rowArrayCodes, colArrayCodes]);
                 }
             }
         }
@@ -67,7 +64,7 @@ namespace WindowsFormsApp1
             this.Text = "Калибровка и проверка температуры ДТВ";
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = System.Drawing.Color.FromArgb(240, 245, 255); // Светло-голубой фон
+            this.BackColor = System.Drawing.Color.FromArgb(240, 245, 255);
             this.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
         }
         private void ConfigureDataGridViewAppearance()
@@ -89,21 +86,17 @@ namespace WindowsFormsApp1
             dataGridView1.ScrollBars = ScrollBars.Vertical;
             dataGridView1.ColumnHeadersHeight = 25;
 
-            // Ширина столбцов
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
                 col.Width = 70;
             }
 
-            // Высота строк данных
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 row.Height = 30;
             }
 
-            // Размеры таблицы
-            int scrollBarWidth = dataGridView1.Rows.Count > 8 ? SystemInformation.VerticalScrollBarWidth : 0;
-            dataGridView1.Width = 70 * dataGridView1.Columns.Count + scrollBarWidth;
+            dataGridView1.Width = 70 * dataGridView1.Columns.Count;
             dataGridView1.Height = dataGridView1.ColumnHeadersHeight + 30 * dataGridView1.Rows.Count;
 
             foreach (DataGridViewColumn col in dataGridView1.Columns)

@@ -10,6 +10,7 @@ using System.Globalization;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -112,7 +113,6 @@ namespace WindowsFormsApp1
             panelChoiseSensor.Visible = true;
             rBCalibration.Checked = true;
         }
-
         private void ConfigureDataGridViewAppearance()
         {
             dataGridView1.AllowUserToAddRows = false;
@@ -481,18 +481,18 @@ namespace WindowsFormsApp1
             }
 
             int cells = -1;
-            if (parsedTemp > -52 && parsedTemp < -48) cells = 1;
-            else if (parsedTemp > -42 && parsedTemp < -38) cells = 2;
-            else if (parsedTemp > -32 && parsedTemp < -28) cells = 3;
-            else if (parsedTemp > -22 && parsedTemp < -18) cells = 4;
-            else if (parsedTemp > -12 && parsedTemp < -8) cells = 5;
-            else if (parsedTemp > -2 && parsedTemp < 2) cells = 6;
-            else if (parsedTemp > 8 && parsedTemp < 12) cells = 7;
-            else if (parsedTemp > 18 && parsedTemp < 23) cells = 8;
-            else if (parsedTemp > 28 && parsedTemp < 32) cells = 9;
-            else if (parsedTemp > 38 && parsedTemp < 42) cells = 10;
-            else if (parsedTemp > 48 && parsedTemp < 52) cells = 11;
-            else if (parsedTemp > 58 && parsedTemp < 62) cells = 12;
+            if (parsedTemp > -53 && parsedTemp < -47) cells = 1;   // -50 ±3
+            else if (parsedTemp > -43 && parsedTemp < -37) cells = 2;   // -40 ±3
+            else if (parsedTemp > -33 && parsedTemp < -27) cells = 3;   // -30 ±3
+            else if (parsedTemp > -23 && parsedTemp < -17) cells = 4;   // -20 ±3
+            else if (parsedTemp > -13 && parsedTemp < -7) cells = 5;    // -10 ±3
+            else if (parsedTemp > -3 && parsedTemp < 3) cells = 6;      //   0 ±3
+            else if (parsedTemp > 7 && parsedTemp < 13) cells = 7;      //  10 ±3
+            else if (parsedTemp > 17 && parsedTemp < 23) cells = 8;     //  20 ±3
+            else if (parsedTemp > 27 && parsedTemp < 33) cells = 9;     //  30 ±3
+            else if (parsedTemp > 37 && parsedTemp < 43) cells = 10;    //  40 ±3
+            else if (parsedTemp > 47 && parsedTemp < 53) cells = 11;    //  50 ±3
+            else if (parsedTemp > 57 && parsedTemp < 63) cells = 12;
             else
             {
                 MessageBox.Show("Температура не попадает в диапазон");
@@ -531,49 +531,54 @@ namespace WindowsFormsApp1
         } // доработать if else
         private void ExportCalibration()
         {
-            string templateName = rBChecked.Checked ? "Проверка температуры.xlsx" : "Калибровка температуры.xlsx";
-            string filePath = templateName;
+            string templateFileName = rBChecked.Checked ? "Проверка температуры.xlsx" : "Калибровка температуры.xlsx";
 
-            if (!File.Exists(filePath))
+            if (!File.Exists(templateFileName))
             {
-                MessageBox.Show($"Файл шаблона не найден:\n{Path.GetFullPath(filePath)}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Файл шаблона не найден:\n{Path.GetFullPath(templateFileName)}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            var folderDialog = new FolderBrowserDialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "Сохранить как";
+            saveFileDialog.Filter = "Файл Excel|*.xlsx";
+            saveFileDialog.DefaultExt = "xlsx";
+            saveFileDialog.FileName = templateFileName; 
+
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                return; 
+
+            string outputFilePath = saveFileDialog.FileName;
+
+            try
             {
-                Description = "Выберите папку для сохранения",
-                SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
-            };
-
-            if (folderDialog.ShowDialog() != DialogResult.OK)
-                return;
-
-            string selectedFolder = folderDialog.SelectedPath;
-            string outputFileName = rBChecked.Checked ? "Проверка температуры.xlsx" : "Калибровка температуры.xlsx";
-            string fullPath = Path.Combine(selectedFolder, outputFileName);
-
-            using (var workbook = new XLWorkbook(filePath))
-            {
-                var worksheet = workbook.Worksheet(1);
-                int startRow = rBChecked.Checked ? 18 : 4;
-
-                for (int row = 0; row < dataGridView1.Rows.Count; row++)
+                using (var workbook = new XLWorkbook(templateFileName))
                 {
-                    if (dataGridView1.Rows[row].IsNewRow) continue;
-                    for (int col = 1; col < dataGridView1.Columns.Count; col++)
+                    var worksheet = workbook.Worksheet(1);
+                    int rowExel = rBChecked.Checked ? 18 : 4;
+
+                    for (int rowTable = 0; rowTable < dataGridView1.Rows.Count; rowTable++, rowExel++)
                     {
-                        var cellValue = dataGridView1.Rows[row].Cells[col].Value;
-                        
-                        if (cellValue != null && double.TryParse(cellValue.ToString(), out double num))
+                        if (dataGridView1.Rows[rowTable].IsNewRow) continue;
+                        for (int colTable = 1; colTable < dataGridView1.Columns.Count; colTable++)
                         {
-                            worksheet.Cell(startRow + row, col + 1).Value = num;
+                            var cellValue = dataGridView1.Rows[rowTable].Cells[colTable].Value;
+                            if (cellValue != null && double.TryParse(cellValue.ToString(), out double num))
+                            {
+                                worksheet.Cell(rowExel, colTable + 1).Value = num;
+                            }
                         }
                     }
+
+                    workbook.SaveAs(outputFilePath);
                 }
-                workbook.SaveAs(fullPath);
+
+                MessageBox.Show($"Файл успешно сохранён:\n{outputFilePath}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            MessageBox.Show($"Файл успешно сохранён в {fullPath}");
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении файла:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         } // сделана
         private void CalculateCoefforRate()
         {
@@ -585,7 +590,7 @@ namespace WindowsFormsApp1
             {
                 ErrorCalculation();
             }
-        }
+        } // сделана
         private void ErrorCalculation()
         {
             int countModuls = Convert.ToInt32(countModulsDtv.Value);
@@ -608,7 +613,7 @@ namespace WindowsFormsApp1
 
             var errorForm = new FormViewErrorForCalibration(countModuls, temps, codes);
             errorForm.Show();
-        }
+        } // сделана
         private void CalculateCoeff()
         {
             int countModuls = Convert.ToInt32(countModulsDtv.Value);
@@ -673,62 +678,57 @@ namespace WindowsFormsApp1
             openFile.Filter = "Файл excel (*.xlsx) | *.xlsx";
             openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
+            string path = null;
+            int variant = rBChecked.Checked ? 18 : 4;
+
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                int variant = rBChecked.Checked ? 18 : 4;
-                string path = openFile.FileName;
-
-                // Настройка формата в зависимости от варианта
-                for (int colIndex = 1; colIndex < dataGridView1.Columns.Count; colIndex++)
-                {
-                    if (variant == 18)
-                    {
-                        dataGridView1.Columns[colIndex].DefaultCellStyle.Format = "F2";
-                    }
-                    else // variant == 4
-                    {
-                        dataGridView1.Columns[colIndex].DefaultCellStyle.Format = null;
-                    }
-                }
-
+                path = openFile.FileName;
                 DataTableDelete();
                 ConfigureDataGridViewAppearance();
-
-                try
+            }
+            if (variant == 18)
+            {
+                for (int colIndex = 1; colIndex < dataGridView1.Columns.Count; colIndex++)
                 {
-                    using (var workbook = new XLWorkbook(path))
+                    dataGridView1.Columns[colIndex].DefaultCellStyle.Format = "F2";
+                }
+            }
+
+            try
+            {
+                using (var workbook = new XLWorkbook(path))
+                {
+                    var worksheet = workbook.Worksheet(1);
+
+                    for (int rowTable = 0, rowExel = variant;
+                         rowTable < dataGridView1.Rows.Count && rowExel <= worksheet.LastRowUsed()?.RowNumber();
+                         rowTable++, rowExel++)
                     {
-                        var worksheet = workbook.Worksheet(1);
-
-                        for (int rowTable = 0, rowExel = variant;
-                             rowTable < dataGridView1.Rows.Count && rowExel <= worksheet.LastRowUsed()?.RowNumber();
-                             rowTable++, rowExel++)
+                        for (int colTable = 1, colExel = 2;
+                             colTable < dataGridView1.Columns.Count;
+                             colTable++, colExel++)
                         {
-                            for (int colTable = 1, colExel = 2;
-                                 colTable < dataGridView1.ColumnCount;
-                                 colTable++, colExel++)
-                            {
-                                var cell = worksheet.Cell(rowExel, colExel);
-                                if (cell == null || cell.IsEmpty()) continue;
+                            var cell = worksheet.Cell(rowExel, colExel);
+                            if (cell == null || cell.IsEmpty()) continue;
 
-                                if (double.TryParse(cell.Value.ToString(), out double num))
-                                {
-                                    dataGridView1.Rows[rowTable].Cells[colTable].Value = num;
-                                }
-                                else
-                                {
-                                    dataGridView1.Rows[rowTable].Cells[colTable].Value = cell.Value.ToString();
-                                }
+                            if (double.TryParse(cell.Value.ToString(), out double num))
+                            {
+                                dataGridView1.Rows[rowTable].Cells[colTable].Value = num;
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[rowTable].Cells[colTable].Value = cell.Value.ToString();
                             }
                         }
                     }
                 }
-                catch    
-                {
-                    MessageBox.Show("Ошибка при загрузке файла");
-                }
-                
             }
+            catch
+            {
+                MessageBox.Show("Ошибка при загрузке файла");
+            }
+
         }// сделана
         private void DataTableDelete()
         {
@@ -750,11 +750,21 @@ namespace WindowsFormsApp1
         private void MakeScreenShot()
         {
             Bitmap screenshot = CaptureForm(this);
-            string fileName = $"Screenshot_{textBoxTemp.Text}.png";
-            string fullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+            
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Title = "Сохранить как";
+            saveFile.Filter = "png|*.png";
+            saveFile.AddExtension = true;
+            saveFile.DefaultExt = "png";
+            string fileName = $"ScreenShot_{textBoxTemp.Text}_°C";
+            saveFile.FileName = fileName;
 
-            screenshot.Save(fullPath, System.Drawing.Imaging.ImageFormat.Png);
-            textBoxHmp.AppendText($"Скриншот сделан и сохранен в {fullPath}");
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                string path = saveFile.FileName;
+                screenshot.Save(path);
+                textBoxHmp.AppendText($"Скриншот успешно сохранен: {path}" + Environment.NewLine);
+            }
         } // сделана
         private void ApplyModernStyle()
         {
@@ -812,6 +822,10 @@ namespace WindowsFormsApp1
                 btn.Padding = new Padding(8, 4, 8, 4);
                 btn.Cursor = Cursors.Hand;
             }
+            
+            btnSendDtv.BackColor = ColorTranslator.FromHtml("#E91E63");
+            btnSendDtv.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#EC407A");
+            btnSendDtv.FlatAppearance.MouseDownBackColor = ColorTranslator.FromHtml("#C2185B");
 
             // Текстбоксы и NumericUpDown
             foreach (TextBox tb in new[] { textBoxTemp, textBoxDtv, textBoxParsedDtv, textBoxHmp }
@@ -865,15 +879,14 @@ namespace WindowsFormsApp1
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 255);
-        }
+        } // сделана
         private void rBChecked_CheckedChanged(object sender, EventArgs e)
         {
             btnCalculateCoeff.Text = "Погрешность";
-        }
+        } // сделана
         private void rBCalibration_CheckedChanged(object sender, EventArgs e)
         {
             btnCalculateCoeff.Text = "Рассчитать коэффициенты";
-        }
-
+        } // сделана
     }
 }

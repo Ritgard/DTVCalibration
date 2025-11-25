@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelChoiseSensor = new System.Windows.Forms.Panel();
             this.btnChoiceSensor = new System.Windows.Forms.Button();
@@ -365,7 +365,6 @@
             // 
             // panelRotronik
             // 
-            this.panelRotronik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelRotronik.Controls.Add(this.btnStopRotronik);
             this.panelRotronik.Controls.Add(this.btnStartRotronik);
             this.panelRotronik.Controls.Add(this.groupBox3);
@@ -377,7 +376,7 @@
             // 
             // btnStopRotronik
             // 
-            this.btnStopRotronik.Location = new System.Drawing.Point(195, 227);
+            this.btnStopRotronik.Location = new System.Drawing.Point(213, 227);
             this.btnStopRotronik.Name = "btnStopRotronik";
             this.btnStopRotronik.Size = new System.Drawing.Size(144, 35);
             this.btnStopRotronik.TabIndex = 27;
@@ -396,9 +395,9 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.intervalSendRotronic);
-            this.groupBox3.Location = new System.Drawing.Point(191, 5);
+            this.groupBox3.Location = new System.Drawing.Point(196, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(166, 58);
+            this.groupBox3.Size = new System.Drawing.Size(163, 58);
             this.groupBox3.TabIndex = 27;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Время опроса";
@@ -406,7 +405,7 @@
             // intervalSendRotronic
             // 
             this.intervalSendRotronic.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.intervalSendRotronic.Location = new System.Drawing.Point(6, 25);
+            this.intervalSendRotronic.Location = new System.Drawing.Point(14, 25);
             this.intervalSendRotronic.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -432,7 +431,7 @@
             this.groupBox1.Controls.Add(this.comboBoxRotronic);
             this.groupBox1.Controls.Add(this.btnConnectRotronic);
             this.groupBox1.Controls.Add(this.btnDisConnectRotronik);
-            this.groupBox1.Location = new System.Drawing.Point(4, 5);
+            this.groupBox1.Location = new System.Drawing.Point(4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(166, 142);
             this.groupBox1.TabIndex = 24;
@@ -517,7 +516,7 @@
             this.panelNameSensor.Controls.Add(this.labelNameSensor);
             this.panelNameSensor.Location = new System.Drawing.Point(955, 12);
             this.panelNameSensor.Name = "panelNameSensor";
-            this.panelNameSensor.Size = new System.Drawing.Size(362, 51);
+            this.panelNameSensor.Size = new System.Drawing.Size(359, 51);
             this.panelNameSensor.TabIndex = 3;
             // 
             // labelNameSensor
@@ -528,7 +527,7 @@
             this.labelNameSensor.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelNameSensor.Location = new System.Drawing.Point(49, 13);
             this.labelNameSensor.Name = "labelNameSensor";
-            this.labelNameSensor.Size = new System.Drawing.Size(262, 23);
+            this.labelNameSensor.Size = new System.Drawing.Size(259, 23);
             this.labelNameSensor.TabIndex = 0;
             this.labelNameSensor.Text = "Эталон температуры";
             this.labelNameSensor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -786,9 +785,9 @@
             // 
             // btnWriteDataInTable
             // 
-            this.btnWriteDataInTable.Location = new System.Drawing.Point(552, 99);
+            this.btnWriteDataInTable.Location = new System.Drawing.Point(485, 86);
             this.btnWriteDataInTable.Name = "btnWriteDataInTable";
-            this.btnWriteDataInTable.Size = new System.Drawing.Size(187, 42);
+            this.btnWriteDataInTable.Size = new System.Drawing.Size(136, 55);
             this.btnWriteDataInTable.TabIndex = 24;
             this.btnWriteDataInTable.Text = "Добавить данные";
             this.btnWriteDataInTable.UseVisualStyleBackColor = true;
@@ -801,14 +800,14 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tempCol,
@@ -824,22 +823,22 @@
             this.plus40Col,
             this.plus50Col,
             this.plus60Col});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle44;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.MenuText;
             this.dataGridView1.Location = new System.Drawing.Point(3, 151);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle45;
             this.dataGridView1.RowTemplate.Height = 50;
             this.dataGridView1.Size = new System.Drawing.Size(956, 377);
             this.dataGridView1.TabIndex = 21;
