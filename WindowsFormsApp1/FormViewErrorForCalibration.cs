@@ -77,7 +77,6 @@ namespace WindowsFormsApp1
 
             dataGridView1.GridColor = System.Drawing.Color.FromArgb(220, 220, 240);
             dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(248, 250, 255);
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.RowHeadersVisible = false;
@@ -89,6 +88,7 @@ namespace WindowsFormsApp1
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
                 col.Width = 70;
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -96,13 +96,14 @@ namespace WindowsFormsApp1
                 row.Height = 30;
             }
 
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                dataGridView1.Rows[0].Cells[i].Style.BackColor = System.Drawing.Color.CadetBlue;
+                dataGridView1.Rows[0].Cells[i].Style.ForeColor = System.Drawing.Color.White;
+            }
+
             dataGridView1.Width = 70 * dataGridView1.Columns.Count;
             dataGridView1.Height = dataGridView1.ColumnHeadersHeight + 30 * dataGridView1.Rows.Count;
-
-            foreach (DataGridViewColumn col in dataGridView1.Columns)
-            {
-                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            }
         }
     }
 }

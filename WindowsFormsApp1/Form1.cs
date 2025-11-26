@@ -122,22 +122,17 @@ namespace WindowsFormsApp1
             dataGridView1.ScrollBars = ScrollBars.Vertical;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            foreach (DataGridViewColumn col in dataGridView1.Columns)
-            {
-                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                col.Width = 70;
-            }
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                row.Height = 30;
-            }
-
             int totalWidth = 0;
 
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                col.Width = 70;
                 totalWidth += col.Width;
+            }
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                row.Height = 30;
             }
 
             int scrollBarWidth = SystemInformation.VerticalScrollBarWidth;
@@ -776,7 +771,7 @@ namespace WindowsFormsApp1
             panelHMP155.ForeColor = Color.FromArgb(40, 40, 40);
 
             panelChoiseSensor.BackColor = Color.FromArgb(240, 245, 255);
-            panelChoiseSensor.ForeColor = Color.FromArgb(40, 40, 40); 
+            panelChoiseSensor.ForeColor = Color.FromArgb(40, 40, 40);
 
             // Панель "Модули ДТВ" — верхняя левая
             panelHMP155.BackColor = Color.FromArgb(240, 245, 255);
@@ -822,7 +817,7 @@ namespace WindowsFormsApp1
                 btn.Padding = new Padding(8, 4, 8, 4);
                 btn.Cursor = Cursors.Hand;
             }
-            
+
             btnSendDtv.BackColor = ColorTranslator.FromHtml("#E91E63");
             btnSendDtv.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#EC407A");
             btnSendDtv.FlatAppearance.MouseDownBackColor = ColorTranslator.FromHtml("#C2185B");
@@ -877,8 +872,13 @@ namespace WindowsFormsApp1
             dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 250);
             dataGridView1.GridColor = Color.FromArgb(220, 220, 240);
             dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 255);
+
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.CadetBlue;
+                dataGridView1.Rows[0].Cells[i].Style.ForeColor = Color.White;
+            }
         } // сделана
         private void rBChecked_CheckedChanged(object sender, EventArgs e)
         {
