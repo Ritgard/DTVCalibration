@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelChoiseSensor = new System.Windows.Forms.Panel();
             this.btnChoiceSensor = new System.Windows.Forms.Button();
@@ -74,7 +74,6 @@
             this.btnExportCalibration = new System.Windows.Forms.Button();
             this.btnScreenShot = new System.Windows.Forms.Button();
             this.btnSendDtv = new System.Windows.Forms.Button();
-            this.textBoxParsedDtv = new System.Windows.Forms.TextBox();
             this.textBoxDtv = new System.Windows.Forms.TextBox();
             this.groupBoxTemp = new System.Windows.Forms.GroupBox();
             this.textBoxTemp = new System.Windows.Forms.TextBox();
@@ -103,6 +102,7 @@
             this.plus40Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.plus50Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.plus60Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBoxParsedDtv = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panelChoiseSensor.SuspendLayout();
             this.panelHMP155.SuspendLayout();
@@ -142,7 +142,7 @@
             this.panel1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1323, 738);
+            this.panel1.Size = new System.Drawing.Size(1492, 738);
             this.panel1.TabIndex = 0;
             // 
             // panelChoiseSensor
@@ -152,7 +152,7 @@
             this.panelChoiseSensor.Controls.Add(this.btnChoiceSensor);
             this.panelChoiseSensor.Controls.Add(this.label1);
             this.panelChoiseSensor.Controls.Add(this.comboBoxChoiceSensor);
-            this.panelChoiseSensor.Location = new System.Drawing.Point(955, 69);
+            this.panelChoiseSensor.Location = new System.Drawing.Point(1121, 69);
             this.panelChoiseSensor.Name = "panelChoiseSensor";
             this.panelChoiseSensor.Size = new System.Drawing.Size(362, 267);
             this.panelChoiseSensor.TabIndex = 16;
@@ -199,7 +199,7 @@
             this.panelHMP155.Controls.Add(this.btnStartSendSensor);
             this.panelHMP155.Controls.Add(this.groupBoxJobHmp);
             this.panelHMP155.Controls.Add(this.groupBoxTimeSendHmp);
-            this.panelHMP155.Location = new System.Drawing.Point(955, 69);
+            this.panelHMP155.Location = new System.Drawing.Point(1121, 69);
             this.panelHMP155.Name = "panelHMP155";
             this.panelHMP155.Size = new System.Drawing.Size(362, 267);
             this.panelHMP155.TabIndex = 4;
@@ -369,7 +369,7 @@
             this.panelRotronik.Controls.Add(this.btnStartRotronik);
             this.panelRotronik.Controls.Add(this.groupBox3);
             this.panelRotronik.Controls.Add(this.groupBox1);
-            this.panelRotronik.Location = new System.Drawing.Point(955, 69);
+            this.panelRotronik.Location = new System.Drawing.Point(1121, 69);
             this.panelRotronik.Name = "panelRotronik";
             this.panelRotronik.Size = new System.Drawing.Size(362, 267);
             this.panelRotronik.TabIndex = 17;
@@ -473,7 +473,7 @@
             this.panelSensor.Controls.Add(this.lblCountReadMessage);
             this.panelSensor.Controls.Add(this.label2);
             this.panelSensor.Controls.Add(this.textBoxHmp);
-            this.panelSensor.Location = new System.Drawing.Point(955, 69);
+            this.panelSensor.Location = new System.Drawing.Point(1121, 69);
             this.panelSensor.Name = "panelSensor";
             this.panelSensor.Size = new System.Drawing.Size(362, 663);
             this.panelSensor.TabIndex = 0;
@@ -514,7 +514,7 @@
             // 
             this.panelNameSensor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelNameSensor.Controls.Add(this.labelNameSensor);
-            this.panelNameSensor.Location = new System.Drawing.Point(955, 12);
+            this.panelNameSensor.Location = new System.Drawing.Point(1121, 12);
             this.panelNameSensor.Name = "panelNameSensor";
             this.panelNameSensor.Size = new System.Drawing.Size(359, 51);
             this.panelNameSensor.TabIndex = 3;
@@ -538,7 +538,7 @@
             this.panelNameModul.Controls.Add(this.labelNameModul);
             this.panelNameModul.Location = new System.Drawing.Point(12, 12);
             this.panelNameModul.Name = "panelNameModul";
-            this.panelNameModul.Size = new System.Drawing.Size(937, 51);
+            this.panelNameModul.Size = new System.Drawing.Size(1103, 51);
             this.panelNameModul.TabIndex = 2;
             // 
             // labelNameModul
@@ -569,12 +569,12 @@
             this.panel3.Controls.Add(this.dataGridView1);
             this.panel3.Location = new System.Drawing.Point(12, 69);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(937, 663);
+            this.panel3.Size = new System.Drawing.Size(1103, 663);
             this.panel3.TabIndex = 1;
             // 
             // btnCalculateCoeff
             // 
-            this.btnCalculateCoeff.Location = new System.Drawing.Point(745, 5);
+            this.btnCalculateCoeff.Location = new System.Drawing.Point(914, 7);
             this.btnCalculateCoeff.Name = "btnCalculateCoeff";
             this.btnCalculateCoeff.Size = new System.Drawing.Size(184, 58);
             this.btnCalculateCoeff.TabIndex = 36;
@@ -583,7 +583,7 @@
             // 
             // btnLoadFile
             // 
-            this.btnLoadFile.Location = new System.Drawing.Point(802, 532);
+            this.btnLoadFile.Location = new System.Drawing.Point(971, 531);
             this.btnLoadFile.Name = "btnLoadFile";
             this.btnLoadFile.Size = new System.Drawing.Size(127, 42);
             this.btnLoadFile.TabIndex = 35;
@@ -592,7 +592,7 @@
             // 
             // btnExportCalibration
             // 
-            this.btnExportCalibration.Location = new System.Drawing.Point(802, 484);
+            this.btnExportCalibration.Location = new System.Drawing.Point(971, 486);
             this.btnExportCalibration.Name = "btnExportCalibration";
             this.btnExportCalibration.Size = new System.Drawing.Size(127, 42);
             this.btnExportCalibration.TabIndex = 34;
@@ -601,7 +601,7 @@
             // 
             // btnScreenShot
             // 
-            this.btnScreenShot.Location = new System.Drawing.Point(802, 613);
+            this.btnScreenShot.Location = new System.Drawing.Point(971, 613);
             this.btnScreenShot.Name = "btnScreenShot";
             this.btnScreenShot.Size = new System.Drawing.Size(127, 42);
             this.btnScreenShot.TabIndex = 33;
@@ -612,7 +612,7 @@
             // 
             this.btnSendDtv.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnSendDtv.ForeColor = System.Drawing.Color.DeepPink;
-            this.btnSendDtv.Location = new System.Drawing.Point(745, 99);
+            this.btnSendDtv.Location = new System.Drawing.Point(914, 98);
             this.btnSendDtv.Name = "btnSendDtv";
             this.btnSendDtv.Size = new System.Drawing.Size(184, 42);
             this.btnSendDtv.TabIndex = 23;
@@ -620,24 +620,14 @@
             this.btnSendDtv.UseVisualStyleBackColor = true;
             this.btnSendDtv.Click += new System.EventHandler(this.btnSendDtv_Click);
             // 
-            // textBoxParsedDtv
-            // 
-            this.textBoxParsedDtv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxParsedDtv.Location = new System.Drawing.Point(745, 484);
-            this.textBoxParsedDtv.Multiline = true;
-            this.textBoxParsedDtv.Name = "textBoxParsedDtv";
-            this.textBoxParsedDtv.Size = new System.Drawing.Size(51, 171);
-            this.textBoxParsedDtv.TabIndex = 3;
-            this.textBoxParsedDtv.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // textBoxDtv
             // 
             this.textBoxDtv.BackColor = System.Drawing.Color.White;
-            this.textBoxDtv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxDtv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxDtv.Location = new System.Drawing.Point(3, 484);
             this.textBoxDtv.Multiline = true;
             this.textBoxDtv.Name = "textBoxDtv";
-            this.textBoxDtv.Size = new System.Drawing.Size(736, 171);
+            this.textBoxDtv.Size = new System.Drawing.Size(905, 171);
             this.textBoxDtv.TabIndex = 2;
             // 
             // groupBoxTemp
@@ -800,14 +790,14 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle43.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tempCol,
@@ -823,24 +813,25 @@
             this.plus40Col,
             this.plus50Col,
             this.plus60Col});
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle44.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.MenuText;
             this.dataGridView1.Location = new System.Drawing.Point(3, 151);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(956, 377);
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView1.Size = new System.Drawing.Size(1095, 377);
             this.dataGridView1.TabIndex = 21;
             // 
             // tempCol
@@ -921,11 +912,21 @@
             this.plus60Col.Name = "plus60Col";
             this.plus60Col.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // textBoxParsedDtv
+            // 
+            this.textBoxParsedDtv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxParsedDtv.Location = new System.Drawing.Point(914, 485);
+            this.textBoxParsedDtv.Multiline = true;
+            this.textBoxParsedDtv.Name = "textBoxParsedDtv";
+            this.textBoxParsedDtv.Size = new System.Drawing.Size(51, 171);
+            this.textBoxParsedDtv.TabIndex = 3;
+            this.textBoxParsedDtv.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1323, 738);
+            this.ClientSize = new System.Drawing.Size(1492, 738);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -997,7 +998,6 @@
         private System.Windows.Forms.Button btnWriteDataInTable;
         private System.Windows.Forms.Button btnSendDtv;
         private System.Windows.Forms.TextBox textBoxDtv;
-        private System.Windows.Forms.TextBox textBoxParsedDtv;
         private System.Windows.Forms.TextBox textBoxTemp;
         private System.Windows.Forms.RadioButton rBChecked;
         private System.Windows.Forms.RadioButton rBCalibration;
@@ -1048,6 +1048,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblCountReadMessage;
         private System.Windows.Forms.Button btnCalculateCoeff;
+        private System.Windows.Forms.TextBox textBoxParsedDtv;
     }
 }
 

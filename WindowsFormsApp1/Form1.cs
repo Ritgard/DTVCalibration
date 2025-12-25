@@ -127,7 +127,7 @@ namespace WindowsFormsApp1
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
                 col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                col.Width = 70;
+                col.Width = 83;
                 totalWidth += col.Width;
             }
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -647,7 +647,7 @@ namespace WindowsFormsApp1
                 }
             }
 
-            var coeffForm = new FormCalculateCoeff(countModuls);
+            var coeffForm = new FormCalculateCoeff(countModuls, temps, codes);
             coeffForm.Show();
 
             for (int i = 0; i < countModuls; i++)
